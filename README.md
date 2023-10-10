@@ -1,1 +1,1 @@
-# django-template
+# Backend for Chat App
