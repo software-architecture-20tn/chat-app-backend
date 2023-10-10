@@ -1,0 +1,34 @@
+django
+django_rest_framework
+python-dotenv
+psycopg2
+django-imagekit
+django-factory-boy
+django-debug-toolbar
+drf-spectacular
+django-rest-knox
+django-extensions
+
+# https://github.com/revsys/django-health-check
+django-health-check
+
+# https://github.com/jazzband/django-defender
+django-defender
+
+Pillow
+
+Werkzeug
+
+# Format migrations
+# https://pypi.org/project/django-migrations-formatter/
+django-migrations-formatter
+
+# PostgreSQL database adapter for the Python programming language
+# https://pypi.org/project/psycopg2/
+psycopg2
+
+# Use to wait for database
+# https://github.com/painless-software/django-probes#basic-usage
+django-probes
+
+django-jazzmin

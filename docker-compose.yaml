@@ -1,0 +1,53 @@
+version: "3.8"
+name: "app-name-server"
+
+volumes:
+  ipython_history: {}
+  postgres_data:
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=my-user
+      - POSTGRES_PASSWORD=my-password
+      - POSTGRES_DB=my-database
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  # celery:
+  #   image: celery:latest
+  #   container_name: celery_worker
+  #   volumes:
+  #     - .:/app
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE=app.settings
+  #     - CELERY_BROKER_URL=redis://redis:6379/0
+  #     - CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+  # Use this for release
+  # web:
+  #   build:
+  #     context: .
+  #   image: app-name-server
+  #   entrypoint: /cnb/lifecycle/launcher
+  #   volumes:
+  #     - .:/app
+  #     - ipython_history:/root/.ipython
+  #   environment:
+  #     - DJANGO_SETTINGS_MODULE=config.local_template
+  #   ports:
+  #     - "8000:8000"
+  #   command: python3 manage.py runserver_plus 0.0.0.0:8000 --reloader-type stat
+  #   depends_on:
+  #     - db
+  #     - redis

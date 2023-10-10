@@ -1,0 +1,35 @@
+{
+    "files.exclude": {
+      "**/__pycache__": true
+    },
+
+    "editor.rulers": [79],
+
+    "editor.bracketPairColorization.enabled": true,
+    "editor.action.trimTrailingWhitespace": "all",
+
+    "python.analysis.typeCheckingMode": "off",
+
+    "python.analysis.inlayHints.functionReturnTypes": true,
+
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": false,
+
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+
+    "gitlens.autolinks": [
+      {
+        "prefix": "YGMP1-",
+        "url": "https://saritasa.atlassian.net/browse/YGMP1-<num>"
+      }
+    ],
+
+    "python.formatting.provider": "none",
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      }
+    }
+  }

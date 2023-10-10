@@ -1,0 +1,15 @@
+pip-tools
+
+isort
+
+black
+
+python-dotenv
+
+invoke
+
+rich
+
+IPython
+
+saritasa-invocations
