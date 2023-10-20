@@ -1,5 +1,5 @@
 version: "3.8"
-name: "app-name-server"
+name: "chat-app-backend"
 
 volumes:
   ipython_history: {}
@@ -8,21 +8,24 @@ volumes:
 services:
   db:
     image: postgres:latest
-    container_name: postgres_database
+    container_name: chat_app_database
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=my-user
-      - POSTGRES_PASSWORD=my-password
-      - POSTGRES_DB=my-database
+      - POSTGRES_USER=chat-app-backend
+      - POSTGRES_PASSWORD=chat-app-backend
+      - POSTGRES_DB=chat-app-backend
+      - dsro=chat-app-db
     ports:
       - "5432:5432"
 
   redis:
     image: redis:latest
-    container_name: redis
+    container_name: chat_app_redis
     ports:
       - "6379:6379"
+    environment:
+      - dsro=chat-app-db
 
   # celery:
   #   image: celery:latest
@@ -38,7 +41,7 @@ services:
   # web:
   #   build:
   #     context: .
-  #   image: app-name-server
+  #   image: chat-app-backend
   #   entrypoint: /cnb/lifecycle/launcher
   #   volumes:
   #     - .:/app
