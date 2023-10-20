@@ -173,3 +173,4 @@ static/
 .vscode/settings.json
 
 *.secrets
+.idea/
