@@ -1,8 +1,8 @@
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 
-from ..serializers import UserSerializer
+from apps.users.api.serializers import UserSerializer
 
 User = get_user_model()
 
@@ -26,6 +26,7 @@ class UserRegisterSerializer(UserSerializer):
         fields = UserSerializer.Meta.fields + (
             "password",
             "password_retype",
+            "username",
         )
 
     def validate_password_retype(self, value):
@@ -33,25 +34,15 @@ class UserRegisterSerializer(UserSerializer):
         if self.initial_data.get("password") != value:
             raise serializers.ValidationError("The passwords don't match.")
         return value
-    
+
     def create(self, validated_data):
         """Create a new user."""
         validated_data.pop("password_retype")
         email = validated_data.pop("email")
         password = validated_data.pop("password")
-        user = User.objects.create_user(email=email, password=password, **validated_data)
-        return user
-
-class UserLoginSerializer(serializers.Serializer):
-    """Provide a serializer for handling the login of a user."""
-
-    email = serializers.EmailField(required=True)
-    password = serializers.CharField(required=True, write_only=True)
-
-    class Meta:
-        """Define the fields to use in the serializer."""
-
-        fields = (
-            "email",
-            "password",
+        user = User.objects.create_user(
+            email=email,
+            password=password,
+            **validated_data,
         )
+        return user

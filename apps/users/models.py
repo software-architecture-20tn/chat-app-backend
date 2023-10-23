@@ -27,11 +27,11 @@ class User(
 
     """
 
-    # username = models.CharField(
-    #     verbose_name=_("Username"),
-    #     max_length=30,
-    #     unique=True,
-    # )
+    username = models.CharField(
+        verbose_name=_("Username"),
+        max_length=30,
+        unique=True,
+    )
     first_name = models.CharField(
         verbose_name=_("First name"),
         max_length=30,
@@ -65,7 +65,6 @@ class User(
             "Designates whether this user should be treated as active.",
         ),
     )
-
     avatar = imagekitmodels.ProcessedImageField(
         verbose_name=_("Avatar"),
         blank=True,
