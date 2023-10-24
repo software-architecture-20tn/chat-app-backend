@@ -4,7 +4,7 @@ from apps.core.api.serializers import BaseSerializer
 from apps.users.models import User
 
 
-class UserSerializer(BaseSerializer ,serializers.ModelSerializer):
+class UserSerializer(BaseSerializer, serializers.ModelSerializer):
     """Serializer for the User model."""
 
     class Meta:
@@ -14,7 +14,7 @@ class UserSerializer(BaseSerializer ,serializers.ModelSerializer):
             "first_name",
             "last_name",
             "email",
-            
+
         )
         read_only_fields = (
             "id",
