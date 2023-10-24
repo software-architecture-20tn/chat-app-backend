@@ -174,3 +174,5 @@ static/
 
 *.secrets
 .idea/
+
+.python-version
