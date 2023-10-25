@@ -13,7 +13,7 @@ In this project, we use `pyenv` to manage virtual environments, please make sure
 - [pyenv](https://github.com/pyenv/pyenv#installation)
 - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 
-After installation, you may need to add some lines to you `.bashrc` or `.zshrc` file. Check [this section](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv) for more details.
+After installation, you may need to add some lines to your `.bashrc` or `.zshrc` file. Check [this section](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv) for more details.
 
 ## Virtual environment & dependencies setup
 ### Setup virtual environment
@@ -24,6 +24,15 @@ pyenv install 3.11 --skip-existing
 pyenv virtualenv 3.11 chat-app-backend
 pyenv local chat-app-backend
 pyenv activate chat-app-backend
+```
+
+**Note (OPTIONAL)**: If you face some issues with the last command while running with Pyenv >= 2.0 (Error message: `Failed to activate virtualenv`), please try to add these lines to your `.profile` file:
+```bash
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
 ```
 ### Setup dependencies
 Before doing this, please make sure the virtual environment is activated.
@@ -45,6 +54,12 @@ Then, run the following commands:
 pip install -r requirements/local.txt  # yes, we run this command again, as now we are in the virtual environment
 pip install -r requirements/development.txt
 ```
+
+**Note (OPTIONAL)**: If you get stuck with some libraries like `psycopg2`, please try to install `libpq-dev` and `python3-dev` packages by running:
+```bash
+sudo apt install libpq-dev python3-dev
+```
+
 Done, the virtual environment and dependencies are set up.
 
 ## Running project
