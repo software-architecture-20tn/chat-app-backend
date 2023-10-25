@@ -142,3 +142,9 @@ Then, close the SSH connection by running:
 ```bash
 exit
 ```
+
+## Dependencies addition
+When you added a dependency, for example, `numpy`, add it to `production.in` file, then run
+```
+inv pip.compile-dependencies
+```
