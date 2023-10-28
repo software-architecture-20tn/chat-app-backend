@@ -1,10 +1,8 @@
 from django.contrib.auth import authenticate
-# from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 # from ..serializers import UserSerializer
 
-# User = get_user_model()
 
 
 # TODO: modify this to adapt
