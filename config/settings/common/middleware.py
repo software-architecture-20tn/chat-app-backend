@@ -8,4 +8,5 @@ MIDDLEWARE = (
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     # "defender.middleware.FailedLoginMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 )

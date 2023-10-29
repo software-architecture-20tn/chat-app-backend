@@ -41,6 +41,7 @@ DRF_PACKAGES = (
 
 THIRD_PARTY_APPS = (
     "imagekit",
+    "corsheaders",
 )
 
 LOCAL_APPS = (
