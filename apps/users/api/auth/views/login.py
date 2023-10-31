@@ -1,19 +1,25 @@
 # https://www.section.io/engineering-education/api-authentication-with-django-knox-and-postman-testing/
 from django.contrib.auth import authenticate
+from drf_spectacular.utils import extend_schema
 from knox.models import AuthToken
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 
-from ..serializers.login import UserLoginSerializer
+from ..serializers.login import (UserLoginResponseSerializer,
+                                 UserLoginSerializer)
 
 
-# TODO: Reuse this or delete it
 class LoginAPIView(generics.GenericAPIView):
     """API view for logging in a user."""
 
     permission_classes = (permissions.AllowAny,)
     serializer_class = UserLoginSerializer
 
+    @extend_schema(
+        responses={
+            200: UserLoginResponseSerializer,
+        }
+    )
     def post(self, request, *args, **kwargs) -> Response:
         """Handle the login of a user."""
         email = request.data.get("email")
