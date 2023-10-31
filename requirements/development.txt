@@ -25,6 +25,7 @@ django==4.2.5
     # via
     #   -r requirements/production.txt
     #   django-appconf
+    #   django-cors-headers
     #   django-debug-toolbar
     #   django-defender
     #   django-extensions
@@ -38,6 +39,8 @@ django-appconf==1.0.5
     # via
     #   -r requirements/production.txt
     #   django-imagekit
+django-cors-headers==4.3.0
+    # via -r requirements/production.txt
 django-debug-toolbar==4.2.0
     # via -r requirements/production.txt
 django-defender==0.9.7

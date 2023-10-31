@@ -32,3 +32,5 @@ psycopg2
 django-probes
 
 django-jazzmin
+
+django-cors-headers
