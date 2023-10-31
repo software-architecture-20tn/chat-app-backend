@@ -46,4 +46,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Add an auto field
-CORS_ALLOW_ALL_ORIGINS_WHITELIST = True
+CORS_ALLOW_ALL_HEADERS = True
+CORS_ORIGIN_ALLOW_ALL = True
+CSRF_TRUSTED_ORIGINS = ['https://*.chat-app.nguyenvanloc.name.vn/','https://*.127.0.0.1']
