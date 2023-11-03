@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 
+# pylint: disable=no-member
 class BaseSerializer(serializers.Serializer):
     """Provide a base serializer."""
 

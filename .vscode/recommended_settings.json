@@ -18,13 +18,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
 
-    "gitlens.autolinks": [
-      {
-        "prefix": "YGMP1-",
-        "url": "https://saritasa.atlassian.net/browse/YGMP1-<num>"
-      }
-    ],
-
     "python.formatting.provider": "none",
     "[python]": {
       "editor.formatOnSave": true,

@@ -40,7 +40,9 @@ class BaseViewSet(GenericViewSet):
         action: str,
     ) -> list[type[BasePermission]]:
         """Return permission classes from action name."""
-        return [permission() for permission in self.permissions_map.get(action)]
+        return [
+            permission() for permission in self.permissions_map.get(action)
+        ]
 
     def get_permissions(self):
         permissions = super().get_permissions()
@@ -51,9 +53,12 @@ class BaseViewSet(GenericViewSet):
             return permissions
 
         if self.action in self.permissions_map:
-            return self.get_permissions_from_action(action)
+            return self.get_permissions_from_action(self.action)
 
-        if self.action == "partial_update" and "update" in self.permissions_map:
+        if (
+            self.action == "partial_update"
+            and "update" in self.permissions_map
+        ):
             return self.get_permissions_from_action("update")
 
         if "default" in self.permissions_map:
@@ -69,15 +74,19 @@ class BaseViewSet(GenericViewSet):
             return serializer_class
 
         if self.action in self.serializers_map:
-            return self.serializers_map.get(action)
+            return self.serializers_map.get(self.action)
 
-        if self.action == "partial_update" and "update" in self.serializers_map:
+        if (
+            self.action == "partial_update"
+            and "update" in self.serializers_map
+        ):
             return self.serializers_map.get("update")
 
         if "default" in self.serializers_map:
             return self.serializers_map.get("default")
 
         return serializer_class
+
 
 class CRUDViewSet(
     mixins.CreateModelMixin,

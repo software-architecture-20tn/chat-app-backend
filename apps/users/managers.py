@@ -3,19 +3,18 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import UserManager as DjangoUserManager
 
 
+# pylint: disable=arguments-differ,arguments-renamed
 class UserManager(DjangoUserManager):
     """Custom manager for the User model."""
 
     def _create_user(
         self,
-        email: str,
         username: str,
+        email: str,
         password: str | None,
         **extra_fields,
     ):
-        """
-        Create and save a user with the given email and password.
-        """
+        """Create and save a user with email, username, and password."""
         if not email:
             raise ValueError("The given email must be set")
         email = self.normalize_email(email)
@@ -33,7 +32,12 @@ class UserManager(DjangoUserManager):
     ):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
-        return self._create_user(email, username, password, **extra_fields)
+        return self._create_user(
+            email=email,
+            username=username,
+            password=password,
+            **extra_fields,
+        )
 
     def create_superuser(
         self,

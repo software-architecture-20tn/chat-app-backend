@@ -1,7 +1,6 @@
 import uuid
 
 import factory
-from django.conf import settings
 
 from .models import User
 

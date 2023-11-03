@@ -1,0 +1,67 @@
+[MASTER]
+ignore=migrations
+jobs=1
+suggestion-mode=yes
+
+# Enable the plugins
+load-plugins=pylint_django,
+              pylint_quotes,
+              pylint.extensions.docstyle,
+              pylint.extensions.docparams,
+
+accept-no-param-doc=no
+default-docstring-type=google
+
+ignored-modules=invoke
+
+django-settings-module=config.local_template
+
+string-quote=double
+triple-quote=double
+docstring-quote=double
+
+[MESSAGES CONTROL]
+disable:too-few-public-methods,
+        missing-return-doc,
+        missing-return-type-doc,
+        missing-any-param-doc,
+        missing-param-doc,
+        missing-type-doc,
+        missing-module-docstring,
+        too-many-ancestors,
+        import-outside-toplevel,
+        unsupported-binary-operation,
+        keyword-arg-before-vararg,
+        logging-fstring-interpolation,
+        fixme,
+        unspecified-encoding,
+        duplicate-code,  #disable duplicate code checking, especially in model files
+        unused-argument,
+        missing-class-docstring,
+        missing-any-param-doc,
+
+[FORMAT]
+# Maximum number of characters on a single line.
+max-line-length=79
+ignore-long-lines=<?https?://
+
+[REPORTS]
+score=yes
+# Set the output format. Available formats are text, parseable, colorized, msvs
+# (visual studio) and html
+output-format=parseable
+
+# Template used to display messages. This is a python new-style format string
+# used to format the message information. See doc for all details.
+msg-template='{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}'
+
+# Include message's id in output
+#include-ids=yes
+
+# Tells whether to display a full report or only the messages
+reports=n
+ignored-argument-names=args|kwargs
+
+# Regular expression which should only match functions or classes name which do
+# not require a docstring
+no-docstring-rgx=^_|__init__|Meta|__str__|unicode
