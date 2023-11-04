@@ -1,4 +1,3 @@
-# import AuthToken from knox
 from knox.models import AuthToken
 from knox.settings import CONSTANTS
 from rest_framework.permissions import IsAuthenticated
@@ -25,9 +24,4 @@ class LogoutAPIView(APIView):
             token_key=short_token_key,
             user=request.user,
         ).delete()
-        return Response(
-            status=200,
-            data={
-                "message": "You have been logged out.",
-            },
-        )
+        return Response()
