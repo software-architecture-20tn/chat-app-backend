@@ -18,10 +18,10 @@ class UserLoginSerializer(serializers.Serializer):
             "password",
         )
 
-    def validate(self, data):
+    def validate(self, attrs):
         """Validate the user's credentials."""
-        email = data.get("email")
-        password = data.get("password")
+        email = attrs.get("email")
+        password = attrs.get("password")
 
         if email and password:
             user = authenticate(email=email, password=password)
@@ -31,14 +31,20 @@ class UserLoginSerializer(serializers.Serializer):
                         "User account is disabled.",
                     )
                 return user
-            else:
-                raise serializers.ValidationError(
-                    "Unable to log in with provided credentials.",
-                )
-        else:
+
             raise serializers.ValidationError(
-                "Must include 'email' and 'password'.",
+                "Unable to log in with provided credentials.",
             )
+
+        raise serializers.ValidationError(
+            "Must include 'email' and 'password'.",
+        )
+
+    def create(self, validated_data):
+        """Bypass check."""
+
+    def update(self, instance, validated_data):
+        """Bypass check."""
 
 
 class UserLoginResponseSerializer(serializers.Serializer):
@@ -52,3 +58,9 @@ class UserLoginResponseSerializer(serializers.Serializer):
             "user",
             "token",
         )
+
+    def create(self, validated_data):
+        """Bypass check."""
+
+    def update(self, instance, validated_data):
+        """Bypass check."""

@@ -12,6 +12,7 @@ INSTALLED_APPS = (
     "django_probes",
 )
 
+# pylint: disable=line-too-long
 HEALTH_CHECK_APPS = (
     "health_check",                             # required
     "health_check.db",                          # stock Django health checkers

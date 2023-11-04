@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [

@@ -5,6 +5,7 @@ from django.http.request import HttpRequest
 from django.utils.translation import gettext_lazy as _
 
 
+# pylint: disable=no-member
 class BaseAdmin(admin.ModelAdmin):
     """Base admin for model management."""
 
@@ -28,10 +29,10 @@ class BaseAdmin(admin.ModelAdmin):
         return fieldsets
 
     def get_readonly_fields(
-            self,
-            request: HttpRequest,
-            obj: Any | None = ...,
-        ) -> list[str] | tuple[Any, ...]:
+        self,
+        request: HttpRequest,
+        obj: Any | None = ...,
+    ) -> list[str] | tuple[Any, ...]:
         read_only_fields = super().get_readonly_fields(request, obj)
         read_only_fields += (
             "created_at",
