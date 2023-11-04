@@ -10,7 +10,7 @@ class KnoxTokenScheme(OpenApiAuthenticationExtension):
         return {
             "type": "apiKey",
             "in": "header",
-            "name": "Knox Authorization",
+            "name": "Authorization",
             "description": (
                 "Token-based authentication with required prefix 'Token'"
             ),
