@@ -11,7 +11,7 @@ class LogoutAPIView(APIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = None
 
-    def get(self, request) -> Response:
+    def post(self, request) -> Response:
         """Logout a user.
 
         Get the token from the request header, get the first 8 characters
