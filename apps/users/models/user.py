@@ -8,7 +8,7 @@ from imagekit.processors import ResizeToFill, Transpose
 
 from apps.core.models import BaseModel
 
-from .managers import UserManager
+from ..managers import UserManager
 
 
 class User(
@@ -112,15 +112,3 @@ class User(
     def __str__(self) -> str:
         # pylint: disable=invalid-str-returned
         return self.email
-
-
-class Friendship(models.Model):
-    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user1')
-    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user2')
-    date = models.DateField(auto_now_add=True)
-    is_close = models.BooleanField(default=False)
-
-class FriendRequest(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
-    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')
-    date_sent = models.DateField(auto_now_add=True)
