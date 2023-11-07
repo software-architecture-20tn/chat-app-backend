@@ -8,7 +8,7 @@ from imagekit.processors import ResizeToFill, Transpose
 
 from apps.core.models import BaseModel
 
-from .managers import UserManager
+from ..managers import UserManager
 
 
 class User(
