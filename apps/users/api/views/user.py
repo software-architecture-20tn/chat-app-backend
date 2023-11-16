@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAdminUser
 from apps.core.api.views import BaseViewSet
 from apps.users.models import User
 
-from .serializers import UserSerializer
+from ..serializers import UserSerializer
 
 
 class UserViewSet(

@@ -82,6 +82,11 @@ class User(
             ResizeToFill(50, 50),
         ],
     )
+    bio = models.TextField(
+        verbose_name=_("Bio"),
+        blank=True,
+        null=True,
+    )
     groups = models.ManyToManyField(
         verbose_name=_("groups"),
         related_name="custom_users",

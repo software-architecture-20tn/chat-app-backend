@@ -13,7 +13,7 @@ class BaseViewSet(GenericViewSet):
     """Provide a base viewset."""
 
     base_permission_classes = (IsAuthenticated,)
-    permission_classes = None
+    permission_classes = ()
     permissions_map: Optional[
         dict[str, Union[type[BasePermission], Iterable[type[BasePermission]]]]
     ] = None
