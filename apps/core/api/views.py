@@ -1,5 +1,5 @@
 # https://github.com/defineimpossible/django-rest-batteries/blob/master/rest_batteries/viewsets.py
-from typing import Iterable, Optional, Union
+from typing import Iterable
 
 from rest_framework import mixins
 from rest_framework.permissions import BasePermission, IsAuthenticated
@@ -14,11 +14,12 @@ class BaseViewSet(GenericViewSet):
 
     base_permission_classes = (IsAuthenticated,)
     permission_classes = ()
-    permissions_map: Optional[
-        dict[str, Union[type[BasePermission], Iterable[type[BasePermission]]]]
-    ] = None
+    permissions_map: dict[
+        str,
+        type[BasePermission] | Iterable[type[BasePermission]]
+    ] | None = None
     serializer_class = None
-    serializers_map: Optional[dict[str, type[BaseSerializer]]] = None
+    serializers_map: dict[str, type[BaseSerializer]] | None = None
 
     def get_viewset_permissions(self) -> list[IsAuthenticated]:
         """Combine `base_permission_classes` and `permission_classes`."""
