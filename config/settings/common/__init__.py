@@ -1,6 +1,7 @@
 from .authentication import *
 from .database import *
 from .debug_toolbar import *
+from .email import *
 from .installed_apps import *
 from .internationalization import *
 from .jazzmin import *
