@@ -34,3 +34,5 @@ django-probes
 django-jazzmin
 
 django-cors-headers
+
+django-rest-passwordreset
