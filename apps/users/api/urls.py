@@ -6,6 +6,7 @@ from .auth.urls import urlpatterns as auth_urls
 
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
+router.register(r"friends", views.FriendViewSet)
 
 urlpatterns = router.urls
 
@@ -19,23 +20,5 @@ urlpatterns += [
             {"get": "retrieve", "put": "update"}
         ),
         name="user-profile",
-    )
-]
-
-urlpatterns += [
-    path(
-        "me/friends/",
-        view=views.FriendListView.as_view(
-            {"get": "list"}
-        ),
-    )
-]
-
-urlpatterns += [
-    path(
-        "me/friends/<int:pk>/",
-        view=views.FriendListView.as_view(
-            {"get": "retrieve"}
-        ),
     )
 ]
