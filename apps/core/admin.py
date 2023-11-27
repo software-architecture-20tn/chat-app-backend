@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 # pylint: disable=no-member
 class BaseAdmin(admin.ModelAdmin):
-    """Base admin for model management."""
+    """Base Admin for model management."""
 
     def get_fieldsets(
         self,
