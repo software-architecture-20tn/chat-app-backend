@@ -4,7 +4,9 @@ from django.utils.translation import gettext_lazy as _
 from imagekit.admin import AdminThumbnail
 
 from ..core.admin import BaseAdmin
-from .models import User
+from .models import User, Friendship
+
+admin.site.register(Friendship)
 
 
 @admin.register(User)
