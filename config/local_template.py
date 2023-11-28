@@ -53,3 +53,6 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.127.0.0.1",
     "https://*.localhost",
 ]
+
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
