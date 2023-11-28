@@ -7,6 +7,7 @@ from .auth.urls import urlpatterns as auth_urls
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"friends", views.FriendViewSet)
+router.register(r"friend-requests", views.FriendRequestViewSet)
 
 urlpatterns = router.urls
 

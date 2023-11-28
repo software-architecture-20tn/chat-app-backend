@@ -1,8 +1,16 @@
-from apps.core.api.views import ReadOnlyViewSet
-from apps.users.models import User
+from apps.core.api.views import ReadOnlyViewSet, BaseViewSet
+from rest_framework import mixins
+from apps.users.models import User, FriendRequest, Friendship
 from django.db.models import Q
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from ..serializers import (
+    UserSerializer,
+    FriendSerializer,
+    FriendRequestSerializer,
+)
 
-from ..serializers import UserSerializer, FriendSerializer
+from drf_spectacular.utils import extend_schema
 
 
 class FriendViewSet(ReadOnlyViewSet):
@@ -20,3 +28,34 @@ class FriendViewSet(ReadOnlyViewSet):
             Q(friendship_user1__user2=self.request.user)
             | Q(friendship_user2__user1=self.request.user),
         )
+
+
+class FriendRequestViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, BaseViewSet):
+    serializer_class = FriendRequestSerializer
+
+    queryset = FriendRequest.objects.all()
+
+    @extend_schema(
+        request=None,  # Indicate that the request body is empty
+    )
+    @action(detail=True, methods=["post"])
+    def accept(self, request, pk):
+        qs = self.get_object()
+        if qs.receiver != self.request.user:
+            return Response(status=403)
+        if qs.is_approved:
+            return Response(
+                status=400,
+                data={
+                    "message": "Friend request already approved.",
+                },
+            )
+        qs.is_approved = True
+        qs.save()
+        Friendship.objects.create(user1=qs.sender, user2=qs.receiver)
+
+        return Response()
+
+    def get_queryset(self):
+        # list all friend requests sended to the current user but not accepted
+        return super().get_queryset().filter(receiver=self.request.user, is_approved=False)
