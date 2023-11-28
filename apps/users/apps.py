@@ -10,4 +10,5 @@ class UsersAppConfig(AppConfig):
     verbose_name = _("Users")
 
     def ready(self) -> None:
+        from . import signals
         from .api.auth import scheme  # noqa: F401
