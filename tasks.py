@@ -1,6 +1,6 @@
 # https://github.com/saritasa-nest/saritasa-python-invocations
-from invoke import Collection
 import saritasa_invocations
+from invoke import Collection
 
 ns = Collection(
     saritasa_invocations.django,

@@ -16,11 +16,8 @@ Including another URLconf
 import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularRedocView,
-    SpectacularSwaggerView,
-)
+from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
+                                   SpectacularSwaggerView)
 
 urlpatterns = [
     # path("admin/defender/", include("defender.urls")), # defender admin
