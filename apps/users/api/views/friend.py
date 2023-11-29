@@ -28,7 +28,11 @@ class FriendViewSet(ReadOnlyViewSet):
         )
 
 
-class FriendRequestViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, BaseViewSet):
+class FriendRequestViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    BaseViewSet,
+):
     serializer_class = FriendRequestSerializer
 
     queryset = FriendRequest.objects.all()
