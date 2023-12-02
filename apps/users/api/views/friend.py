@@ -1,16 +1,14 @@
-from apps.core.api.views import ReadOnlyViewSet, BaseViewSet
-from rest_framework import mixins
-from apps.users.models import User, FriendRequest, Friendship
 from django.db.models import Q
+from drf_spectacular.utils import extend_schema
+from rest_framework import mixins
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from ..serializers import (
-    UserSerializer,
-    FriendSerializer,
-    FriendRequestSerializer,
-)
 
-from drf_spectacular.utils import extend_schema
+from apps.core.api.views import BaseViewSet, ReadOnlyViewSet
+from apps.users.models import FriendRequest, Friendship, User
+
+from ..serializers import (FriendRequestSerializer, FriendSerializer,
+                           UserSerializer)
 
 
 class FriendViewSet(ReadOnlyViewSet):
@@ -30,7 +28,11 @@ class FriendViewSet(ReadOnlyViewSet):
         )
 
 
-class FriendRequestViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, BaseViewSet):
+class FriendRequestViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    BaseViewSet,
+):
     serializer_class = FriendRequestSerializer
 
     queryset = FriendRequest.objects.all()

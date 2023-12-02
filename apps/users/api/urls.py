@@ -8,9 +8,9 @@ router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"friends", views.FriendViewSet)
 router.register(r"friend-requests", views.FriendRequestViewSet)
+router.register(r"close-friends", views.CloseFriendViewSet)
 
 urlpatterns = router.urls
-
 
 urlpatterns += auth_urls
 

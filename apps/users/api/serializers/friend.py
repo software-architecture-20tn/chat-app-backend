@@ -1,9 +1,8 @@
+from django.db.models import Q
 from rest_framework import serializers
 
 from apps.core.api.serializers import BaseModelSerializer
-from apps.users.models import User, FriendRequest, Friendship
-
-from django.db.models import Q
+from apps.users.models import FriendRequest, Friendship, User
 
 
 class FriendSerializer(BaseModelSerializer):
