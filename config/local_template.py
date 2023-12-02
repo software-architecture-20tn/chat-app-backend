@@ -54,5 +54,18 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.localhost",
 ]
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "LOCATION": BASE_DIR / "media",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

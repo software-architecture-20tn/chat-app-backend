@@ -16,6 +16,8 @@ Including another URLconf
 import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
+from django.conf import settings
 from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
                                    SpectacularSwaggerView)
 
@@ -37,3 +39,7 @@ urlpatterns = [
     ),
     path("api/users/", include("apps.users.api.urls")),
 ]
+
+urlpatterns += static(
+    settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,
+)
