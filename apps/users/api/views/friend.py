@@ -1,9 +1,6 @@
 from django.db.models import Q
-<<<<<<< Updated upstream
 from drf_spectacular.utils import extend_schema
-=======
 
->>>>>>> Stashed changes
 from rest_framework import mixins
 from rest_framework.decorators import action
 from rest_framework.response import Response

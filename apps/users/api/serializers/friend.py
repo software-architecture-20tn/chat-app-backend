@@ -1,8 +1,5 @@
 from django.db.models import Q
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 from rest_framework import serializers
 
 from apps.core.api.serializers import BaseModelSerializer
@@ -44,10 +41,10 @@ class FriendRequestSerializer(BaseModelSerializer):
 
     def create(self, validated_data):
         """Check the availability to create a new friend request.
-        
+
         Check if the receiver is already a friend.
         or the receiver is already sent a friend request.
-        
+
         """
 
         user = self._user
