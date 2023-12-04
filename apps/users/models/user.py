@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
     Permission,
     PermissionsMixin,
 )
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -36,6 +37,12 @@ class User(
         verbose_name=_("Username"),
         max_length=30,
         unique=True,
+        validators=(
+            RegexValidator(
+                r"^[a-zA-Z0-9]*$",
+                message=_("Username must be alphanumeric."),
+            ),
+        ),
     )
     first_name = models.CharField(
         verbose_name=_("First name"),
