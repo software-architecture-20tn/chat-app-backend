@@ -20,6 +20,15 @@ from ..serializers import (
     UserSerializer,
 )
 
+from apps.core.api.views import BaseViewSet, ReadOnlyViewSet
+from apps.users.models import FriendRequest, Friendship, User
+
+from ..serializers import (
+    FriendRequestSerializer,
+    FriendSerializer,
+    UserSerializer,
+)
+
 
 class FriendViewSet(ReadOnlyViewSet):
     serializer_class = UserSerializer
