@@ -1,4 +1,8 @@
 from django.db.models import Q
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 from rest_framework import mixins
 from rest_framework.permissions import IsAdminUser
 

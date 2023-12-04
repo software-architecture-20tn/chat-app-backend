@@ -1,6 +1,8 @@
 from django.urls import path
-from django_rest_passwordreset.urls import add_reset_password_urls_to_router
+
 from rest_framework.routers import DefaultRouter
+
+from django_rest_passwordreset.urls import add_reset_password_urls_to_router
 
 from . import views
 

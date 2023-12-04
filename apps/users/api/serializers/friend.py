@@ -1,4 +1,8 @@
 from django.db.models import Q
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 from rest_framework import serializers
 
 from apps.core.api.serializers import BaseModelSerializer

@@ -1,0 +1,185 @@
+[tool.isort]
+line_length = 79
+multi_line_output = 3
+known_django = "django"
+known_drf = "rest_framework"
+known_apps = "apps"
+skip = [
+  "migrations",
+  "_tmp",
+  "src",
+  "scripts",
+  ".venv",
+  "node_modules",
+  "config",
+]
+sections = [
+  "FUTURE",
+  "STDLIB",
+  "DJANGO",
+  "DRF",
+  "THIRDPARTY",
+  "FIRSTPARTY",
+  "APPS",
+  "LOCALFOLDER",
+]
+include_trailing_comma = true
+default_section = "THIRDPARTY"
+
+[tool.pytest.ini_options]
+# --reuse-db:
+#   allow saving DB tables between test sessions (like --keepdb)
+# --capture=no
+#   allow use of ipdb during tests
+# --ff
+#   run last failed tests first
+addopts = [
+  "--reuse-db",
+  "--ff",
+  "--capture=no",
+]
+# skip all files inside following dirs
+norecursedirs = [
+    "_tmp",
+    "node_modules",
+    "src",
+]
+# set Django settings
+DJANGO_SETTINGS_MODULE = "config.settings.local"
+
+[tool.flake8]
+# https://www.flake8rules.com/
+ignore = [
+  # https://www.flake8rules.com/rules/E126.html
+  "E126",
+  # https://www.flake8rules.com/rules/W503.html
+  "W503",
+  # https://www.flake8rules.com/rules/W504.html
+  "W504",
+  # https://github.com/m-burst/flake8-pytest-style/blob/master/docs/rules/PT004.md
+  "PT004",
+  # Missing docstring in public module
+  "D100",
+  # Missing docstring in public method
+  "D102",
+  # Missing docstring in public function
+  "D103",
+  # Missing docstring in magic method
+  "D105",
+  # Missing docstring in public package
+  "D104",
+  # Missing docstring in public nested
+  "D106",
+  # Missing docstring in __init__
+  "D107",
+  # Manually surrounded by quotes, consider using the `!r` conversion flag
+  "B028"
+]
+extend-select = [
+  "DJ10",  # Model should define verbose_name in Meta class
+  "DJ11",  # Model should define verbose_name_plural in Meta class
+]
+inline-quotes = "double"
+statistics = true
+count = true
+max-complexity = 10
+pytest-fixture-no-parentheses = true
+pytest-parametrize-names-type = "list"
+pytest-parametrize-values-type = "list"
+pytest-parametrize-values-row-type = "list"
+
+# F401 https://www.flake8rules.com/rules/F401.html
+# F403 https://www.flake8rules.com/rules/F403.html
+# F405 https://www.flake8rules.com/rules/F405.html
+# E501 https://www.flake8rules.com/rules/E501.html
+per-file-ignores = [
+    "config/settings/config.py:F401,F403,F405",
+    "config/settings/local.template.py:F403,F405",
+    "config/settings/common/authentication.py:E501",
+    "config/settings/common/drf.py:E501",
+]
+
+[tool.pylint.main]
+fail-under = 10
+
+# Files or directories to be skipped. They should be base names, not paths.
+ignore = ["migrations"]
+
+# List of module names for which member attributes should not be checked (useful
+# for modules/projects where namespaces are manipulated during runtime and thus
+# existing member attributes cannot be deduced by static analysis). It supports
+# qualified module names, as well as Unix pattern matching.
+ignored-modules = ["invoke"]
+
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use, and will cap the count on Windows to
+# avoid hangs.
+jobs = 0
+
+# List of plugins (as comma separated values of python module names) to load,
+# usually to register additional checkers.
+load-plugins = [
+    "pylint_django",
+    "pylint_pytest",
+    "pylint_quotes",
+    "pylint.extensions.docstyle",
+    "pylint.extensions.docparams",
+]
+
+# When enabled, pylint would attempt to guess common misconfiguration and emit
+# user-friendly hints instead of false-positive error messages.
+suggestion-mode = true
+
+string-quote = "double"
+triple-quote = "double"
+docstring-quote = "double"
+
+[tool.pylint.basic]
+# Regular expression which should only match function or class names that do not
+# require a docstring.
+no-docstring-rgx = "^_|__init__|Meta|__str__|unicode"
+
+[tool.pylint.format]
+# Regexp for a line that is allowed to be longer than the limit.
+ignore-long-lines = "<?https?://"
+
+# Maximum number of characters on a single line.
+max-line-length = 79
+
+[tool.pylint."messages control"]
+disable = [
+    "too-few-public-methods",
+    "missing-return-doc",
+    "missing-return-type-doc",
+    "missing-any-param-doc",
+    "missing-param-doc",
+    "missing-type-doc",
+    "missing-module-docstring",
+    "too-many-ancestors",
+    "import-outside-toplevel",
+    "unsupported-binary-operation",
+    "keyword-arg-before-vararg",
+    "logging-fstring-interpolation",
+    "fixme",
+    "unspecified-encoding",
+]
+
+[tool.pylint.parameter_documentation]
+# If the docstring type cannot be guessed the specified docstring type will be
+# used.
+default-docstring-type = "google"
+
+[tool.pylint.reports]
+# Template used to display messages. This is a python new-style format string
+# used to format the message information. See doc for all details.
+msg-template = "{path}:{line}: [{msg_id}({symbol}), {obj}] {msg}"
+
+# Tells whether to display a full report or only the messages.
+reports = false
+
+# Activate the evaluation score.
+score = true
+
+[tool.pylint.variables]
+# Argument names that match this expression will be ignored.
+ignored-argument-names = "args|kwargs"

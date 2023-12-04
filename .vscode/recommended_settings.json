@@ -1,28 +1,25 @@
 {
-    "files.exclude": {
-      "**/__pycache__": true
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
     },
-
-    "editor.rulers": [79],
-
-    "editor.bracketPairColorization.enabled": true,
-    "editor.action.trimTrailingWhitespace": "all",
-
-    "python.analysis.typeCheckingMode": "off",
-
-    "python.analysis.inlayHints.functionReturnTypes": true,
-
-    "python.linting.flake8Enabled": true,
-    "python.linting.mypyEnabled": false,
-
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true,
-
-    "python.formatting.provider": "none",
-    "[python]": {
-      "editor.formatOnSave": true,
-      "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-      }
-    }
-  }
+    "editor.formatOnSave": true
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.rulers": [
+    79
+  ],
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.typeCheckingMode": "off",
+  "python.formatting.provider": "none",
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": false,
+  "python.linting.pylintArgs": [
+    "--django-settings-module=config.settings.local"
+  ],
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false
+}

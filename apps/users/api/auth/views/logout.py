@@ -1,8 +1,9 @@
-from knox.models import AuthToken
-from knox.settings import CONSTANTS
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from knox.models import AuthToken
+from knox.settings import CONSTANTS
 
 
 class LogoutAPIView(APIView):

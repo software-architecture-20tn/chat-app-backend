@@ -16,8 +16,11 @@ Including another URLconf
 import debug_toolbar
 from django.contrib import admin
 from django.urls import include, path
+<<<<<<< Updated upstream
 from django.conf.urls.static import static
 from django.conf import settings
+=======
+>>>>>>> Stashed changes
 from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
                                    SpectacularSwaggerView)
 
