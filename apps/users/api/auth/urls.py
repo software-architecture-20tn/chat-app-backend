@@ -25,4 +25,9 @@ urlpatterns = router.urls + [
         views.LogoutAPIView.as_view(),
         name="logout",
     ),
+    path(
+        "change-password/",
+        views.PasswordChangeAPIView.as_view(),
+        name="change-password",
+    )
 ]

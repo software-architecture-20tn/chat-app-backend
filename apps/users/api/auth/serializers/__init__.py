@@ -1,1 +1,2 @@
+from .change_password import PasswordChangeSerializer
 from .register import UserRegisterSerializer
