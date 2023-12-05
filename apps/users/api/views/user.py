@@ -3,7 +3,7 @@ import re
 from django.db.models import Q
 
 from rest_framework import mixins
-from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -13,7 +13,7 @@ from apps.users.models import User
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
 
-from ..serializers import UserSerializer
+from ..serializers import UserSerializer, UserSearchSerializer
 
 
 class UserViewSet(
@@ -21,13 +21,16 @@ class UserViewSet(
     BaseViewSet,
 ):
     serializer_class = UserSerializer
-    permission_classes = (IsAdminUser,)
+    serializers_map = {
+        "search": UserSearchSerializer,
+        "default": UserSerializer,
+    }
+    permission_classes = (IsAuthenticated,)
+    permissions_map = {
+        "search": (IsAuthenticated,),
+        "default": (IsAdminUser,),
+    }
     queryset = User.objects.all()
-
-    def get_permissions(self):
-        if self.action == "search":
-            return [AllowAny()]
-        return super().get_permissions()
 
     @extend_schema(
         parameters=[
@@ -42,10 +45,11 @@ class UserViewSet(
     )
     @action(detail=False, methods=["get"])
     def search(self, request):
-        """Search for users
+        """Search for users.
 
         Search for user by keyword in username, email, first_name, last_name.
         Each keyword is separated by comma, semicolon or space.
+
         """
         keyword = request.query_params.get("keyword", "")
 
@@ -64,5 +68,5 @@ class UserViewSet(
             )
 
         users = User.objects.filter(query)
-        serializer = UserSerializer(users, many=True)
+        serializer = UserSearchSerializer(users, many=True)
         return Response(serializer.data)
