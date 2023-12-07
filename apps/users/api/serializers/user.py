@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.core.api.serializers import BaseSerializer, BaseModelSerializer
+from apps.core.api.serializers import BaseModelSerializer, BaseSerializer
 from apps.users.models import User
 
 
@@ -26,4 +26,5 @@ class UserSearchSerializer(BaseModelSerializer):
             "first_name",
             "last_name",
             "email",
+            "avatar",
         )
