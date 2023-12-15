@@ -37,14 +37,6 @@ ns.configure(
                 settings_template="config/.env.local",
                 save_settings_from_template_to="config/.env",
             ),
-            # Default K8S Settings shared between envs
-            # k8s_defaults=saritasa_invocations.K8SDefaultSettings(
-            #     proxy="teleport.company.com",
-            #     db_config=saritasa_invocations.K8SDBSettings(
-            #         namespace="db",
-            #         pod_selector="app=pod-selector-db",
-            #     ),
-            # ),
         ),
     },
 )
