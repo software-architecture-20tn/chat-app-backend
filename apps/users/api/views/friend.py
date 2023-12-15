@@ -63,6 +63,26 @@ class FriendRequestViewSet(
 
         return Response()
 
+    def create(self, request, *args, **kwargs):
+        if request.data.get("receiver") == request.user.pk:
+            return Response(
+                status=400,
+                data={
+                    "message": "The receiver can't be the same as the sender.",
+                },
+            )
+        if not User.objects.filter(pk=request.data.get("receiver")).exists():
+            return Response(
+                status=400,
+                data={
+                    "message": "The receiver doesn't exist.",
+                },
+            )
+        return super().create(request, *args, **kwargs)
+
     def get_queryset(self):
         # list all friend requests sended to the current user but not accepted
-        return super().get_queryset().filter(receiver=self.request.user, is_approved=False)
+        return super().get_queryset().filter(
+            receiver=self.request.user,
+            is_approved=False,
+        )

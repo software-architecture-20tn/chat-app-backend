@@ -39,25 +39,34 @@ class FriendRequestSerializer(BaseModelSerializer):
             "is_approved",
         )
 
-    def create(self, validated_data):
-        """Check the availability to create a new friend request.
-
-        Check if the receiver is already a friend.
-        or the receiver is already sent a friend request.
-
-        """
-
+    def validate_receiver(self, value):
         user = self._user
+        if value == user:
+            raise serializers.ValidationError(
+                "The receiver can't be the same as the sender.",
+            )
+        if not User.objects.filter(pk=value.pk).exists():
+            raise serializers.ValidationError(
+                "The receiver doesn't exist.",
+            )
         if Friendship.objects.filter(
-            Q(user1=validated_data["receiver"], user2=user)
-            | Q(user2=validated_data["receiver"], user1=user)
+            Q(user1=value, user2=user)
+            | Q(user2=value, user1=user)
         ).exists():
             raise serializers.ValidationError(
                 "The receiver is already a friend.",
             )
-        if FriendRequest.objects.filter(Q(sender=validated_data["receiver"])).exists():
+        if FriendRequest.objects.filter(Q(sender=value)).exists():
             raise serializers.ValidationError(
                 "The receiver already sent a friend request.",
             )
+        if FriendRequest.objects.filter(Q(receiver=value)).exists():
+            raise serializers.ValidationError(
+                "The receiver already received a friend request.",
+            )
+        return value
+
+    def create(self, validated_data):
+        user = self._user
         validated_data["sender"] = user
         return super().create(validated_data)
