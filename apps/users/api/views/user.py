@@ -3,17 +3,17 @@ import re
 from django.db.models import Q
 
 from rest_framework import mixins
-from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
+
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 
 from apps.core.api.views import BaseViewSet, ReadOnlyViewSet
 from apps.users.models import User
 
-from drf_spectacular.utils import extend_schema, OpenApiParameter
-from drf_spectacular.types import OpenApiTypes
-
-from ..serializers import UserSerializer, UserSearchSerializer
+from ..serializers import UserSearchSerializer, UserSerializer
 
 
 class UserViewSet(
