@@ -2,7 +2,6 @@
 from django.core.mail import EmailMultiAlternatives
 from django.dispatch import receiver
 from django.template.loader import render_to_string
-from django.urls import reverse
 
 from django_rest_passwordreset.signals import reset_password_token_created
 
@@ -50,7 +49,7 @@ def password_reset_token_created(
     )
 
     msg = EmailMultiAlternatives(
-        "Password Reset for {title}".format(title="Your Website Title"),
+        "Password Reset for {title}".format(title="Teleclone"),
         email_plaintext_message,
         "noreply@chat-app.nguyenvanloc.name.vn",
         [reset_password_token.user.email]
