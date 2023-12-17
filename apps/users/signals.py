@@ -32,10 +32,9 @@ def password_reset_token_created(
         "username": reset_password_token.user.username,
         "email": reset_password_token.user.email,
         "reset_password_url": "{}?token={}".format(
-            instance.request.build_absolute_uri(
-                reverse(
-                    "reset-password-confirm-list"
-                ),
+            (
+                "https://teleclone.nguyenvanloc.name.vn/"
+                "forgot-password-confirm"
             ),
             reset_password_token.key)
     }
