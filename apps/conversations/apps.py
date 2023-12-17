@@ -7,3 +7,7 @@ class MessagesAppConfig(AppConfig):
 
     name = "apps.conversations"
     verbose_name = _("Messages")
+
+    def ready(self) -> None:
+        from . import signals  # noqa
+        return super().ready()
