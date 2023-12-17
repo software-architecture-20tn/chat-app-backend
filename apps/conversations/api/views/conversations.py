@@ -51,7 +51,7 @@ class ConversationListAPIView(GenericAPIView):
         last_messages.sort(key=lambda x: x.date, reverse=True)
         return Message.objects.filter(
             id__in=[message.id for message in last_messages],
-        )
+        ).order_by("-id")
 
     def get(self, request, *args, **kwargs) -> response.Response:
         """Get the list of conversations."""
