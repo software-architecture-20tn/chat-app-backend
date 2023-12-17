@@ -76,3 +76,4 @@ class Message(BaseModel):
             raise ValidationError(
                 _("The sender must be a member of the group.")
             )
+        return super().clean()

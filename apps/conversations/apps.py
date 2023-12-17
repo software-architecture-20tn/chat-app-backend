@@ -9,5 +9,5 @@ class MessagesAppConfig(AppConfig):
     verbose_name = _("Messages")
 
     def ready(self) -> None:
-        from . import signals  # noqa
+        from . import signals  # noqa  # pylint: disable=unused-import
         return super().ready()
