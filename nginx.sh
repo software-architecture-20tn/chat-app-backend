@@ -3,7 +3,6 @@
 sudo cp -rf app.conf /etc/nginx/sites-available/chat-app.nguyenvanloc.name.vn
 sudo chmod 710 /var/lib/jenkins/workspace/chat-app-backend
 
-sudo ln -s /etc/nginx/sites-available/chat-app.nguyenvanloc.name.vn /etc/nginx/sites-enabled
 sudo nginx -t
 
 sudo systemctl start nginx
