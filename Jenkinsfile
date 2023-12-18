@@ -11,8 +11,8 @@ pipeline {
     stage("Setup Gunicorn") {
       steps {
         sh '''
-        chmod +x guicorn.sh
-        ./guicorn.sh
+        chmod +x gunicorn.sh
+        ./gunicorn.sh
         '''
       }
     }
