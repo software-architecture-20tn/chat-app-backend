@@ -2,9 +2,11 @@ pipeline {
   agent any
   stages {
     stage("Install dependencies") {
-      sh '''
-      pip install -r requirements/development.txt
-      '''
+      steps {
+        sh '''
+        pip install -r requirements/development.txt
+        '''
+      }
     }
     stage("Setup Gunicorn") {
       steps {
