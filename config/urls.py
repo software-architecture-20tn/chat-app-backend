@@ -24,7 +24,6 @@ from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
 urlpatterns = [
     # path("admin/defender/", include("defender.urls")), # defender admin
     path("admin/", admin.site.urls),
-    path("adminn", admin.site.urls),
     path("__debug__/", include(debug_toolbar.urls)),
     path("health/", include("health_check.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
