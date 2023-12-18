@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /var/lib/jenkins/workspace/chat-app-server
+cd /var/lib/jenkins/workspace/chat-app-backend
 
 python manage.py makemigrations
 python manage.py migrate
