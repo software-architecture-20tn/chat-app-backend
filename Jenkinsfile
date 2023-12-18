@@ -1,10 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage("Install dependencies") {
+    stage("Setup environment") {
       steps {
         sh '''
-        pip install -r requirements/development.txt
+        chmod +x envsetup.sh
+        ./envsetup.sh
         '''
       }
     }

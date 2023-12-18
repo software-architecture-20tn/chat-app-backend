@@ -1,8 +1,5 @@
 #!/bin/bash
 
-pyenv activate chat-app-server
-
-
 cd /var/lib/jenkins/workspace/chat-app-server
 
 python manage.py makemigrations
