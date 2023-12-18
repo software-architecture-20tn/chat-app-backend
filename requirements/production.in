@@ -36,3 +36,5 @@ django-jazzmin
 django-cors-headers
 
 django-rest-passwordreset
+
+gunicorn
