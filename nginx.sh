@@ -1,14 +1,14 @@
 #!/bin/bash
 
-sudo cp -rf app.conf /etc/nginx/sites-available/app
+cp -rf app.conf /etc/nginx/sites-available/app
 chmod 710 /var/lib/jenkins/workspace/chat-app-backend
 
-sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
-sudo nginx -t
+ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled
+nginx -t
 
-sudo systemctl start nginx
-sudo systemctl enable nginx
+systemctl start nginx
+systemctl enable nginx
 
 echo "Nginx has been started"
 
-sudo systemctl status nginx
+systemctl status nginx
