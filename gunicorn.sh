@@ -27,7 +27,6 @@ echo "Gunicorn has been enabled."
 
 sudo systemctl restart gunicorn
 
-
 sudo systemctl status gunicorn
 
 
