@@ -1,13 +1,13 @@
 #!/bin/bash
 
+cd /var/lib/jenkins/workspace/chat-app-backend
+
 if [ -d "env" ]
 then
     echo "Python virtual environment exists."
 else
     python3 -m venv env
 fi
-
-cd /var/lib/jenkins/workspace/chat-app-backend
 
 source env/bin/activate
 
