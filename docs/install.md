@@ -104,44 +104,8 @@ inv docker.stop
 ```
 It is equivalent to `docker-compose stop` command.
 
-# Instructions for running backend on development server
-We have a VPS that hosts our development server. Every time you merge codes into `main` branch, please make sure to do the below:
-```bash
-ssh root@15.235.186.83
-```
-Contact me for the password.
-Then,
-```bash
-cd /home/projects/chat-app-backend/
-git pull
-```
-Please make sure that the pulling process is successful. If not, please contact me.
-Then, run this command to see the processes that are using port 8000:
-```bash
-lsof -i:8000 -t
-```
-There will be 2 process IDs (PIDs) returned. Kill them by running:
-```bash
-kill <PID>
-```
-Then, verify the killing process by running this command again:
-```bash
-lsof -i:8000 -t
-```
-Then, start the server again by running:
-```bash
-nohup ./run.sh &
-```
-Please notice the ampersand `&` at the end of the command. It is used to run the command in background, so that we can close the SSH connection without stopping the server.
-Then, verify the running process by running:
-```bash
-lsof -i:8000 -t
-```
-There will be 2 new PIDs returned. If not, please contact me.
-Then, close the SSH connection by running:
-```bash
-exit
-```
+# CI/CD
+After pushing code to `master` branch, the CI/CD pipeline will be triggered automatically.
 
 ## Dependencies addition
 When you added a dependency, for example, `numpy`, add it to `production.in` file, then run
