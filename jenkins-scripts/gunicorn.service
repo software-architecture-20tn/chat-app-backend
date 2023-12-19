@@ -1,6 +1,6 @@
 [Unit]
 Description=gunicorn daemon
-Requires=gunicorn.socket
+Requires=jenkins-scripts/gunicorn.socket
 After=network.target
 
 [Service]
