@@ -38,6 +38,7 @@ urlpatterns = [
         name="redoc",
     ),
     path("api/users/", include("apps.users.api.urls")),
+    path("api/conversations/", include("apps.conversations.api.urls")),
 ]
 
 urlpatterns += static(

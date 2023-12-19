@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -21,6 +22,7 @@ class Message(BaseModel):
         related_name="received_messages",
         verbose_name=_("Receiver"),
         null=True,
+        blank=True,
     )
     group = models.ForeignKey(
         to="conversations.Group",
@@ -28,6 +30,7 @@ class Message(BaseModel):
         related_name="messages",
         verbose_name=_("Group"),
         null=True,
+        blank=True,
     )
     date = models.DateTimeField(
         verbose_name=_("Date"),
@@ -59,11 +62,18 @@ class Message(BaseModel):
 
         """
         if not self.receiver and not self.group:
-            raise models.ValidationError(
+            raise ValidationError(
                 _("A message must have a receiver or a group.")
             )
         if not self.content and not self.media:
-            raise models.ValidationError(
+            raise ValidationError(
                 _("A message must have a content or a media.")
+            )
+        if not self.group:
+            return super().clean()
+
+        if not self.group.members.filter(member=self.sender).exists():
+            raise ValidationError(
+                _("The sender must be a member of the group.")
             )
         return super().clean()
