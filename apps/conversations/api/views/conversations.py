@@ -51,7 +51,7 @@ class ConversationListAPIView(GenericAPIView):
         # Remove None values
         last_messages = list(filter(None, last_messages))
         # Sort by date
-        last_messages.sort(key=lambda x: x.date, reverse=True)
+        last_messages.sort(key=lambda x: x.time, reverse=True)
         return Message.objects.filter(
             id__in=[message.id for message in last_messages],
         ).order_by("-id")
