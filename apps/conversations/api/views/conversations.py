@@ -4,6 +4,8 @@ from rest_framework import response, status
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 
+from drf_spectacular.utils import extend_schema
+
 from apps.conversations.models import Group, Message
 
 from ..serializers import ConversationSerializer
@@ -13,6 +15,7 @@ class ConversationListAPIView(GenericAPIView):
     """View for listing conversations."""
 
     permission_classes = (IsAuthenticated,)
+    serializer_class = ConversationSerializer
 
     def get_queryset(self):
         """Get the list of conversations."""
@@ -53,6 +56,11 @@ class ConversationListAPIView(GenericAPIView):
             id__in=[message.id for message in last_messages],
         ).order_by("-id")
 
+    @extend_schema(
+        responses={
+            status.HTTP_200_OK: ConversationSerializer(many=True),
+        },
+    )
     def get(self, request, *args, **kwargs) -> response.Response:
         """Get the list of conversations."""
         queryset = self.get_queryset()
