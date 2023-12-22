@@ -32,8 +32,8 @@ class Message(BaseModel):
         null=True,
         blank=True,
     )
-    date = models.DateTimeField(
-        verbose_name=_("Date"),
+    time = models.DateTimeField(
+        verbose_name=_("Time sent"),
         auto_now_add=True,
     )
     content = models.TextField(

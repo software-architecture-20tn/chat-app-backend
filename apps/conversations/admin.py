@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
 
 from apps.core.admin import BaseAdmin
 
@@ -69,7 +68,7 @@ class MessageManager(BaseAdmin):
     list_display = (
         "id",
         "content",
-        "date",
+        "time",
         "sender",
         "receiver",
         "group",

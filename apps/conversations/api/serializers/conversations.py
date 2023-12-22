@@ -16,7 +16,7 @@ class ConversationSerializer(BaseModelSerializer):
             "sender",
             "receiver",
             "group",
-            "date",
+            "time",
             "content",
             "media",
             "avatar",
