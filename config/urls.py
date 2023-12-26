@@ -21,6 +21,10 @@ from django.conf import settings
 from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
                                    SpectacularSwaggerView)
 
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
     # path("admin/defender/", include("defender.urls")), # defender admin
     path("admin/", admin.site.urls),
@@ -39,6 +43,7 @@ urlpatterns = [
     ),
     path("api/users/", include("apps.users.api.urls")),
     path("api/conversations/", include("apps.conversations.api.urls")),
+    path('sentry-debug/', trigger_error),
 ]
 
 urlpatterns += static(
