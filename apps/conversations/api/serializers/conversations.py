@@ -8,6 +8,7 @@ class ConversationSerializer(BaseModelSerializer):
     """Serializer for managing conversations."""
 
     avatar = serializers.SerializerMethodField()
+    conversation_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Message
@@ -20,6 +21,7 @@ class ConversationSerializer(BaseModelSerializer):
             "content",
             "media",
             "avatar",
+            "conversation_name",
         )
 
     def get_avatar(self, message: Message) -> str:
@@ -31,3 +33,10 @@ class ConversationSerializer(BaseModelSerializer):
         if message.sender.avatar:
             return message.sender.avatar.url
         return None
+
+    def get_conversation_name(self, message: Message) -> str:
+        if message.group:
+            return message.group.name
+        if message.sender == self._user:
+            return message.receiver.username
+        return message.sender.username
