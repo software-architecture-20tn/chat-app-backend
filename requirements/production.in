@@ -37,6 +37,8 @@ django-cors-headers
 
 django-rest-passwordreset
 
+django-filter
+
 gunicorn
 
 sentry-sdk
