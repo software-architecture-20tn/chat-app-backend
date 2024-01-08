@@ -25,6 +25,7 @@ django==4.2.5
     #   django-defender
     #   django-extensions
     #   django-factory-boy
+    #   django-filter
     #   django-health-check
     #   django-jazzmin
     #   django-rest-knox
@@ -41,6 +42,8 @@ django-defender==0.9.7
 django-extensions==3.2.3
     # via -r requirements/production.in
 django-factory-boy==1.0.0
+    # via -r requirements/production.in
+django-filter==23.5
     # via -r requirements/production.in
 django-health-check==3.17.0
     # via -r requirements/production.in
