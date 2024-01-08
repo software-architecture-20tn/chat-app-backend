@@ -23,7 +23,8 @@ from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
 
 
 def trigger_error(request):
-    division_by_zero = 1 / 0
+    _ = 1 / 0
+
 
 urlpatterns = [
     # path("admin/defender/", include("defender.urls")), # defender admin
