@@ -5,8 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from ..core.admin import BaseAdmin
 from .models import Friendship, User
 
-admin.site.register(Friendship)
-
 
 @admin.site.register(Friendship)
 class FriendshipAdmin(BaseAdmin):
