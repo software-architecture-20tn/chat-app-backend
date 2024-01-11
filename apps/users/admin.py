@@ -2,12 +2,20 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from imagekit.admin import AdminThumbnail
-
 from ..core.admin import BaseAdmin
 from .models import Friendship, User
 
 admin.site.register(Friendship)
+
+
+@admin.site.register(Friendship)
+class FriendshipAdmin(BaseAdmin):
+    ordering = ("id",)
+    list_display = (
+        "id",
+        "user1_id",
+        "user2_id",
+    )
 
 
 @admin.register(User)
