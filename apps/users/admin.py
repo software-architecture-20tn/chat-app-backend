@@ -14,10 +14,9 @@ admin.site.register(Friendship)
 class UserAdmin(BaseAdmin, BaseUserAdmin):
     """UI for User model."""
 
-    ordering = ("email",)
-    avatar_thumbnail = AdminThumbnail(image_field="avatar_thumbnail")
+    ordering = ("id",)
     list_display = (
-        "avatar_thumbnail",
+        "id",
         "email",
         "first_name",
         "last_name",
@@ -42,6 +41,7 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
         (
             None, {
                 "fields": (
+                    "id",
                     "email",
                     "password",
                 ),
