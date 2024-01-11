@@ -40,18 +40,12 @@ class DirectMessageListSerializer(BaseModelSerializer):
 class DirectMessageCreateSerializer(BaseModelSerializer):
     """Serializer for managing conversations."""
 
-    avatar = serializers.SerializerMethodField()
-    conversation_name = serializers.SerializerMethodField()
-
     class Meta:
         model = Message
         fields = (
             "id",
             "sender",
             "receiver",
-            "time",
             "content",
             "media",
-            "avatar",
-            "conversation_name",
         )
