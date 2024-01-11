@@ -6,7 +6,7 @@ from ..core.admin import BaseAdmin
 from .models import Friendship, User
 
 
-@admin.site.register(Friendship)
+@admin.register(Friendship)
 class FriendshipAdmin(BaseAdmin):
     ordering = ("id",)
     list_display = (
