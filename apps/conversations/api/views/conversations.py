@@ -19,6 +19,9 @@ class ConversationListAPIView(GenericAPIView):
 
     def get_queryset(self):
         """Get the list of conversations."""
+        if getattr(self, "swagger_fake_view", False):
+            # queryset just for schema generation metadata
+            return Message.objects.none()
         # Get all group that the user is a member of.
         group_ids = self.request.user.joined_groups.all().values_list(
             "group_id",
