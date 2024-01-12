@@ -14,6 +14,8 @@ source env/bin/activate
 
 pip3 install -r requirements/development.txt
 
+python manage.py test
+
 if [ -d "logs" ]
 then
     echo "Log folder exists."
