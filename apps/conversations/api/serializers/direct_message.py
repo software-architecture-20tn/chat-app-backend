@@ -1,7 +1,10 @@
+from django.db.models import Q
+
 from rest_framework import serializers
 
 from apps.conversations.models import Message
 from apps.core.api.serializers import BaseModelSerializer
+from apps.users.models import Friendship
 
 
 class DirectMessageListSerializer(BaseModelSerializer):
@@ -49,3 +52,23 @@ class DirectMessageCreateSerializer(BaseModelSerializer):
             "content",
             "media",
         )
+
+    def validate(self, attrs):
+        """Validate the serializer."""
+        if attrs.get("group"):
+            raise serializers.ValidationError(
+                "A direct message cannot have a group."
+            )
+        receiver = attrs.get("receiver")
+        if not receiver:
+            raise serializers.ValidationError(
+                "A direct message must have a receiver."
+            )
+        if not Friendship.objects.filter(
+            Q(user1=self._user, user2=receiver)
+            | Q(user1=receiver, user2=self._user),
+        ).exists():
+            raise serializers.ValidationError(
+                "You are not friends with this user."
+            )
+        return super().validate(attrs)
