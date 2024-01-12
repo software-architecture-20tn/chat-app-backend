@@ -5,7 +5,7 @@ sudo chmod 710 /var/lib/jenkins/workspace/chat-app-backend
 
 sudo nginx -t
 
-sudo systemctl start nginx
+sudo systemctl restart nginx
 sudo systemctl enable nginx
 
 echo "Nginx has been started"
