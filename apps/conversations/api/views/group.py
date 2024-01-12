@@ -1,25 +1,22 @@
-# from django.contrib.auth.models import AnonymousUser
-
 from rest_framework import mixins, status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from apps.conversations.api.serializers import (
+    GroupCreationSerializer,
+    GroupSerializer,
+)
+from apps.conversations.models import Group
 from apps.core.api.mixins import UpdateModelOnlyPutMixin
-from apps.core.api.views import CRUDViewSet
 from apps.core.api.views import BaseViewSet
-from apps.conversations.models import Group, GroupMember
-from apps.conversations.api.serializers import GroupSerializer, GroupCreationSerializer
-from apps.users.models import User
-
-from rest_framework.permissions import IsAuthenticated
 
 
 class GroupViewSet(
-    # mixins.ListModelMixin,
-    # mixins.CreateModelMixin,
-    # # mixins.RetrieveModelMixin,
-    # mixins.DestroyModelMixin,
-    # UpdateModelOnlyPutMixin,
-    CRUDViewSet,
+    mixins.ListModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin,
+    UpdateModelOnlyPutMixin,
     BaseViewSet,
 ):
     """ViewSet for group."""
@@ -30,38 +27,15 @@ class GroupViewSet(
     serializers_map = {
         "create": GroupCreationSerializer,
         "update": GroupSerializer,
-        "destroy": GroupSerializer,
         "default": GroupSerializer,
     }
-    # search_fields = ()
-    # ordering_fields = ()
+    search_fields = ()
+    ordering_fields = ()
 
-    def create(self, request, *args, **kwargs):
-        """Create a new group with the current user and specified friends."""
-        friend_ids = request.data.get("friend_ids")
-        if not friend_ids:
-            return Response(
-                {"message": "You must specify friends to create a new group"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        friends = User.objects.filter(id__in=friend_ids, friends=request.user)
-        if len(friends) != len(friend_ids):
-            return Response(
-                {"message": "Some users are not your friends"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        group = Group.objects.create(name=request.data.get("name"))
-        # Add the current user to the GroupMember table
-        GroupMember.objects.create(member=request.user, group=group)
-
-        # Add each friend to the GroupMember table
-        for friend in friends:
-            GroupMember.objects.create(member=friend, group=group)
-        
-        serializer = self.get_serializer(group)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            members__member=self.request.user,
+        )
 
     def update(self, request, *args, **kwargs):
         """Allow only the creator of a group to update it."""
