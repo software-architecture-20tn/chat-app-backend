@@ -75,6 +75,11 @@ class GroupCreationSerializer(serializers.ModelSerializer):
         return super().validate(attrs)
 
     def create(self, validated_data):
+        """Create a new group.
+
+        Create a new group with the name and friends (at least 1).
+
+        """
         friends = validated_data.pop("friend_ids")
         validated_data["person_created"] = self.context["request"].user
         group = super().create(validated_data)

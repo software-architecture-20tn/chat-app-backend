@@ -19,7 +19,7 @@ class GroupViewSet(
     UpdateModelOnlyPutMixin,
     BaseViewSet,
 ):
-    """ViewSet for group."""
+    """ViewSet for managing Group."""
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
