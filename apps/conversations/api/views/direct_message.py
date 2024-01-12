@@ -46,19 +46,9 @@ class DirectMessageCreateAPIView(CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         """Create a new direct message."""
-        # Get the `id` of the user from the URL.
-        # user_id = self.kwargs.get("receiver_id")
-        # current_user = self.request.user
-        # target_user = User.objects.filter(id=user_id).first()
-        # if not target_user:
-        #     return response.Response(
-        #         {"detail": "User not found."},
-        #         status=status.HTTP_404_NOT_FOUND,
-        #     )
-        # data = request.data
-        # data["sender"] = current_user.id
-        # data["receiver"] = target_user.id
-        serializer = self.get_serializer(data=request.data)
+        data = request.data
+        data["sender"] = request.user.id
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return response.Response(

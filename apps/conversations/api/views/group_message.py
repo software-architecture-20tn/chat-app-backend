@@ -41,3 +41,15 @@ class GroupMessageCreateAPIView(CreateAPIView):
 
     permission_classes = (IsAuthenticated,)
     serializer_class = GroupMessageSerializer
+
+    def post(self, request, *args, **kwargs):
+        """Create a new group message."""
+        data = request.data
+        data["sender"] = request.user.id
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(
+            serializer.data,
+            status=status.HTTP_201_CREATED,
+        )
