@@ -3,7 +3,6 @@ from django.contrib import admin
 from apps.core.admin import BaseAdmin
 
 from .models import Group, GroupAdmin, GroupMember, Message
-import abansjck
 
 
 @admin.register(GroupAdmin)
