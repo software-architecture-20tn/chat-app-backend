@@ -33,8 +33,12 @@ class GroupViewSet(
     ordering_fields = ()
 
     def get_queryset(self):
-        return super().get_queryset().filter(
-            members__member=self.request.user,
+        return (
+            super()
+            .get_queryset()
+            .filter(
+                members__member=self.request.user,
+            )
         )
 
     def update(self, request, *args, **kwargs):
@@ -51,7 +55,7 @@ class GroupViewSet(
     def destroy(self, request, *args, **kwargs):
         """Allow only the creator of a group to delete it."""
         group = self.get_object()
-        if group.creator != request.user:
+        if group.person_created != request.user:
             return Response(
                 {"message": "You are not the creator of this group"},
                 status=status.HTTP_403_FORBIDDEN,

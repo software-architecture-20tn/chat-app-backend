@@ -47,12 +47,12 @@ class GroupManager(BaseAdmin):
 
     list_display = (
         "name",
-        "date_created",
+        "created_at",
         "person_created",
     )
     list_display_links = (
         "name",
-        "date_created",
+        "created_at",
         "person_created",
     )
     search_fields = (
@@ -73,9 +73,7 @@ class MessageManager(BaseAdmin):
         "receiver",
         "group",
     )
-    list_display_links = (
-        "id",
-    )
+    list_display_links = ("id",)
     search_fields = (
         "content",
         "sender__email",

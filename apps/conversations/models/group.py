@@ -11,10 +11,6 @@ class Group(BaseModel):
         verbose_name=_("Group name"),
         max_length=30,
     )
-    date_created = models.DateTimeField(
-        verbose_name=_("Date created"),
-        auto_now_add=True,
-    )
     person_created = models.ForeignKey(
         to="users.User",
         on_delete=models.SET_NULL,
