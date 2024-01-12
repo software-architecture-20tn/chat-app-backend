@@ -4,3 +4,4 @@ from .direct_message import (
     DirectMessageListAPIView,
 )
 from .group_message import GroupMessageCreateAPIView, GroupMessageListAPIView
+from .group import GroupViewSet
