@@ -1,9 +1,12 @@
 from rest_framework import mixins, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from apps.conversations.api.serializers import (
+    GroupAddMemberSerializer,
     GroupCreationSerializer,
+    GroupRemoveMemberSerializer,
     GroupSerializer,
 )
 from apps.conversations.models import Group
@@ -27,6 +30,8 @@ class GroupViewSet(
     serializers_map = {
         "create": GroupCreationSerializer,
         "update": GroupSerializer,
+        "add_members": GroupAddMemberSerializer,
+        "remove_members": GroupRemoveMemberSerializer,
         "default": GroupSerializer,
     }
     search_fields = ()
@@ -62,3 +67,27 @@ class GroupViewSet(
             )
 
         return super().destroy(request, *args, **kwargs)
+
+    @action(detail=True, methods=["post"], url_path="add-members")
+    def add_members(self, request, *args, **kwargs):
+        """Add members to a group."""
+        group = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(instance=group)
+        return Response(
+            {"message": "Members added successfully"},
+            status=status.HTTP_200_OK,
+        )
+
+    @action(detail=True, methods=["post"], url_path="remove-members")
+    def remove_members(self, request, *args, **kwargs):
+        """Remove members from a group."""
+        group = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(instance=group)
+        return Response(
+            {"message": "Members removed successfully"},
+            status=status.HTTP_200_OK,
+        )
