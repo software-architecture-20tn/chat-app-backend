@@ -170,5 +170,5 @@ urllib3==2.1.0
     # via
     #   -r production.txt
     #   sentry-sdk
-werkzeug==2.3.7
+werkzeug==2.3.8
     # via -r production.txt
