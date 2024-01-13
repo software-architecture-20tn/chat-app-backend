@@ -124,5 +124,5 @@ uritemplate==4.1.1
     # via drf-spectacular
 urllib3==2.1.0
     # via sentry-sdk
-werkzeug==2.3.7
+werkzeug==2.3.8
     # via -r production.in
