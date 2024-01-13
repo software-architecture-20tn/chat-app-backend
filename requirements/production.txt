@@ -16,9 +16,9 @@ cffi==1.15.1
     # via cryptography
 cryptography==41.0.4
     # via django-rest-knox
-django==4.2.5
+django==4.2.7
     # via
-    #   -r requirements/production.in
+    #   -r production.in
     #   django-appconf
     #   django-cors-headers
     #   django-debug-toolbar
@@ -34,46 +34,46 @@ django==4.2.5
 django-appconf==1.0.5
     # via django-imagekit
 django-cors-headers==4.3.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-debug-toolbar==4.2.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-defender==0.9.7
-    # via -r requirements/production.in
+    # via -r production.in
 django-extensions==3.2.3
-    # via -r requirements/production.in
+    # via -r production.in
 django-factory-boy==1.0.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-filter==23.5
-    # via -r requirements/production.in
+    # via -r production.in
 django-health-check==3.17.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-imagekit==4.1.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-jazzmin==2.6.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-migrations-formatter==1.0.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-probes==1.7.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-rest-framework==0.1.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-rest-knox==4.2.0
-    # via -r requirements/production.in
+    # via -r production.in
 django-rest-passwordreset==1.3.0
-    # via -r requirements/production.in
+    # via -r production.in
 djangorestframework==3.14.0
     # via
     #   django-rest-framework
     #   django-rest-knox
     #   drf-spectacular
 drf-spectacular==0.26.4
-    # via -r requirements/production.in
+    # via -r production.in
 factory-boy==3.3.0
     # via django-factory-boy
 faker==19.6.2
     # via factory-boy
 gunicorn==21.2.0
-    # via -r requirements/production.in
+    # via -r production.in
 inflection==0.5.1
     # via drf-spectacular
 jsonschema==4.19.1
@@ -87,15 +87,15 @@ packaging==23.2
 pilkit==2.0
     # via django-imagekit
 pillow==10.0.1
-    # via -r requirements/production.in
+    # via -r production.in
 psycopg2==2.9.7
-    # via -r requirements/production.in
+    # via -r production.in
 pycparser==2.21
     # via cffi
 python-dateutil==2.8.2
     # via faker
 python-dotenv==1.0.0
-    # via -r requirements/production.in
+    # via -r production.in
 pytz==2023.3.post1
     # via djangorestframework
 pyyaml==6.0.1
@@ -111,7 +111,7 @@ rpds-py==0.10.3
     #   jsonschema
     #   referencing
 sentry-sdk==1.39.1
-    # via -r requirements/production.in
+    # via -r production.in
 six==1.16.0
     # via
     #   django-imagekit
@@ -125,4 +125,4 @@ uritemplate==4.1.1
 urllib3==2.1.0
     # via sentry-sdk
 werkzeug==2.3.7
-    # via -r requirements/production.in
+    # via -r production.in
