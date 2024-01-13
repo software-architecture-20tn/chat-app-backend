@@ -5,6 +5,7 @@ from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field
 
 from apps.conversations.models import Group, GroupAdmin, GroupMember
+from apps.core.api.serializers import BaseModelSerializer
 from apps.users.models import Friendship, User
 
 
@@ -108,3 +109,80 @@ class GroupCreationSerializer(serializers.ModelSerializer):
             for member in members
         ]
         return MemberSerializer(users, many=True).data
+
+
+class GroupAddMemberSerializer(BaseModelSerializer):
+    """Serializer for adding members to a group."""
+    members_ids = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        many=True,
+        write_only=True,
+    )
+
+    class Meta:
+        model = Group
+        fields = (
+            "members_ids",
+        )
+
+    def validate(self, attrs):
+        """Validate the members_ids field."""
+        members_ids = attrs.get("members_ids")
+        if not members_ids:
+            raise serializers.ValidationError(
+                {"message": "You must specify members to add to the group"},
+            )
+        friends = Friendship.objects.filter(
+            Q(user1=self.context["request"].user, user2__in=members_ids)
+            | Q(user2=self.context["request"].user, user1__in=members_ids)
+        ).values_list("user1", "user2")
+        if len(friends) < len(members_ids):
+            raise serializers.ValidationError(
+                {"message": "Some users are not your friends"},
+            )
+        return attrs
+
+    def save(self, **kwargs):
+        """Add members to the group."""
+        members = self.validated_data.get("members_ids")
+        group = self.instance
+        for member in members:
+            if not GroupMember.objects.filter(
+                group=group,
+                member=member,
+            ).exists():
+                GroupMember.objects.create(
+                    group=group,
+                    member=member,
+                )
+        return self.instance
+
+
+class GroupRemoveMemberSerializer(BaseModelSerializer):
+    """Serializer for adding members to a group."""
+    members_ids = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        many=True,
+        write_only=True,
+    )
+
+    class Meta:
+        model = Group
+        fields = (
+            "members_ids",
+        )
+
+    def save(self, **kwargs):
+        """Add members to the group."""
+        members = self.validated_data.get("members_ids")
+        group = self.instance
+        for member in members:
+            if GroupMember.objects.filter(
+                group=group,
+                member=member,
+            ).exists():
+                GroupMember.objects.filter(
+                    group=group,
+                    member=member,
+                ).delete()
+        return self.instance
