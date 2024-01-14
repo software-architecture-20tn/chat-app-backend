@@ -51,7 +51,11 @@ class DirectMessageCreateSerializer(BaseModelSerializer):
             "receiver",
             "content",
             "media",
+            "time",
         )
+        extra_kwargs = {
+            "time": {"read_only": True},
+        }
 
     def validate(self, attrs):
         """Validate the serializer."""
