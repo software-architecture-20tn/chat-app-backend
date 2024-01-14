@@ -1,5 +1,5 @@
 django
-django_rest_framework
+djangorestframework >= 3.9.1
 python-dotenv
 psycopg2
 django-imagekit
