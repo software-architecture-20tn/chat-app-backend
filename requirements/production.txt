@@ -66,7 +66,7 @@ djangorestframework==3.14.0
     #   -r requirements/production.in
     #   django-rest-knox
     #   drf-spectacular
-drf-spectacular==0.27.0
+drf-spectacular==0.27.1
     # via -r requirements/production.in
 factory-boy==3.3.0
     # via django-factory-boy
