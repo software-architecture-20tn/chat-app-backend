@@ -3,6 +3,7 @@ from django.db.models import Q
 from rest_framework import serializers
 
 from apps.core.api.serializers import BaseModelSerializer
+from apps.users.api.serializers.user import UserSerializer
 from apps.users.models import FriendRequest, Friendship, User
 
 
@@ -24,11 +25,20 @@ class FriendSerializer(BaseModelSerializer):
 
 
 class FriendRequestSerializer(BaseModelSerializer):
+    """Serializer for the FriendRequest model."""
+    sender_username = serializers.CharField(source='sender.username', read_only=True)
+    sender_first_name = serializers.CharField(source='sender.first_name', read_only=True)
+    sender_last_name = serializers.CharField(source='sender.last_name', read_only=True)
+    sender_avatar = serializers.SerializerMethodField()
     class Meta:
         model = FriendRequest
         fields = (
             "id",
             "sender",
+            "sender_username",
+            "sender_first_name",
+            "sender_last_name",
+            "sender_avatar",
             "receiver",
             "date_time_sent",
             "is_approved",
@@ -36,8 +46,15 @@ class FriendRequestSerializer(BaseModelSerializer):
         read_only_fields = (
             "id",
             "sender",
+            "sender_username",
+            "sender_first_name",
+            "sender_last_name",
             "is_approved",
+            "sender_avatar",
         )
+
+    def get_sender_avatar(self, obj):
+        return obj.sender.avatar.url if obj.sender.avatar else None
 
     def validate_receiver(self, value):
         user = self._user
