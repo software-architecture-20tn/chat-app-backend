@@ -38,9 +38,7 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
         "first_name",
         "last_name",
     )
-    list_display_links = (
-        "email",
-    )
+    list_display_links = ("email",)
     search_fields = (
         "first_name",
         "last_name",
@@ -48,7 +46,8 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
     )
     add_fieldsets = (
         (
-            None, {
+            None,
+            {
                 "classes": ("wide",),
                 "fields": ("username", "email", "password1", "password2"),
             },
@@ -56,7 +55,8 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
     )
     fieldsets = (
         (
-            None, {
+            None,
+            {
                 "fields": (
                     "email",
                     "password",
@@ -64,7 +64,8 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
             },
         ),
         (
-            _("Personal info"), {
+            _("Personal info"),
+            {
                 "fields": (
                     "first_name",
                     "last_name",
@@ -73,7 +74,8 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
             },
         ),
         (
-            _("Permissions"), {
+            _("Permissions"),
+            {
                 "fields": (
                     "is_active",
                     "is_staff",

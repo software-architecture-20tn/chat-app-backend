@@ -29,7 +29,10 @@ class Migration(migrations.Migration):
                 ),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 ("updated_at", models.DateTimeField(auto_now=True)),
-                ("name", models.CharField(max_length=30, verbose_name="Group name")),
+                (
+                    "name",
+                    models.CharField(max_length=30, verbose_name="Group name"),
+                ),
                 (
                     "date_created",
                     models.DateTimeField(
@@ -66,8 +69,16 @@ class Migration(migrations.Migration):
                 ),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 ("updated_at", models.DateTimeField(auto_now=True)),
-                ("date", models.DateTimeField(auto_now_add=True, verbose_name="Date")),
-                ("content", models.TextField(blank=True, verbose_name="Content")),
+                (
+                    "date",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Date"
+                    ),
+                ),
+                (
+                    "content",
+                    models.TextField(blank=True, verbose_name="Content"),
+                ),
                 (
                     "media",
                     models.FileField(

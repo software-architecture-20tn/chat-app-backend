@@ -29,5 +29,5 @@ urlpatterns = router.urls + [
         "change-password/",
         views.PasswordChangeAPIView.as_view(),
         name="change-password",
-    )
+    ),
 ]

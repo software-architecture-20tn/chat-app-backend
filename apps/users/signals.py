@@ -35,7 +35,8 @@ def password_reset_token_created(
                 "https://teleclone.nguyenvanloc.name.vn/"
                 "forgot-password-confirm"
             ),
-            reset_password_token.key)
+            reset_password_token.key,
+        ),
     }
 
     # render email text
@@ -52,7 +53,7 @@ def password_reset_token_created(
         "Password Reset for {title}".format(title="Teleclone"),
         email_plaintext_message,
         "noreply@chat-app.nguyenvanloc.name.vn",
-        [reset_password_token.user.email]
+        [reset_password_token.user.email],
     )
     msg.attach_alternative(email_html_message, "text/html")
     msg.send()

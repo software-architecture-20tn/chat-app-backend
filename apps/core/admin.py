@@ -18,7 +18,8 @@ class BaseAdmin(admin.ModelAdmin):
         fieldsets = super().get_fieldsets(request, obj)
         fieldsets += (
             (
-                _("Updated history"), {
+                _("Updated history"),
+                {
                     "fields": (
                         "created_at",
                         "updated_at",
@@ -40,9 +41,9 @@ class BaseAdmin(admin.ModelAdmin):
         )
 
         if (
-            not hasattr(self, "create_only_fields") or
-            not self.create_only_fields or
-            not obj
+            not hasattr(self, "create_only_fields")
+            or not self.create_only_fields
+            or not obj
         ):
             return read_only_fields
 
