@@ -96,7 +96,7 @@ pycparser==2.21
     # via cffi
 python-dateutil==2.8.2
     # via faker
-python-dotenv==1.0.0
+python-dotenv==1.0.1
     # via -r requirements/production.in
 pytz==2023.3.post1
     # via djangorestframework
