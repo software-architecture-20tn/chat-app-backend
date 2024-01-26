@@ -15,8 +15,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Chat App API",
-    "DESCRIPTION": "A Telegram Clone",
+    "TITLE": "Connect API",
+    "DESCRIPTION": "A modern messaging application.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
