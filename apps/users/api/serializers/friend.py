@@ -73,15 +73,21 @@ class FriendRequestSerializer(BaseModelSerializer):
             raise serializers.ValidationError(
                 "The receiver is already a friend.",
             )
-        if FriendRequest.objects.filter(Q(sender=value)).exists():
-            raise serializers.ValidationError(
-                "The receiver already sent a friend request.",
-            )
         if FriendRequest.objects.filter(
-            Q(sender=user, receiver=value) | Q(sender=value, receiver=user)
+            sender=value,
+            receiver=user,
+            is_approved=False,
         ).exists():
             raise serializers.ValidationError(
-                "The receiver already received a friend request.",
+                "The receiver already sent you a friend request.",
+            )
+        if FriendRequest.objects.filter(
+            sender=user,
+            receiver=value,
+            is_approved=False,
+        ).exists():
+            raise serializers.ValidationError(
+                "The receiver already received a friend request from you.",
             )
         return value
 
