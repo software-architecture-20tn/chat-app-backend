@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
 from ..core.admin import BaseAdmin
-from .models import Friendship, User
+from .models import Friendship, User, FriendRequest
 
 
 @admin.register(Friendship)
@@ -13,6 +13,17 @@ class FriendshipAdmin(BaseAdmin):
         "id",
         "user1_id",
         "user2_id",
+    )
+
+
+@admin.register(FriendRequest)
+class FriendRequestAdmin(BaseAdmin):
+    ordering = ("id",)
+    list_display = (
+        "id",
+        "sender_id",
+        "receiver_id",
+        "is_approved",
     )
 
 
@@ -39,7 +50,7 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
         (
             None, {
                 "classes": ("wide",),
-                "fields": ("email", "password1", "password2"),
+                "fields": ("username", "email", "password1", "password2"),
             },
         ),
     )
@@ -47,7 +58,6 @@ class UserAdmin(BaseAdmin, BaseUserAdmin):
         (
             None, {
                 "fields": (
-                    "id",
                     "email",
                     "password",
                 ),
