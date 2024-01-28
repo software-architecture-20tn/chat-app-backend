@@ -25,6 +25,8 @@ class GroupMessageSerializer(BaseModelSerializer):
         }
 
     def get_conversation_name(self, message: Message) -> str:
+        if not message.group:
+            return ""  # This is to bypass the type checker
         return message.group.name
 
     def validate(self, attrs):

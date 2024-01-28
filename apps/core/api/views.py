@@ -1,4 +1,5 @@
 # https://github.com/defineimpossible/django-rest-batteries/blob/master/rest_batteries/viewsets.py
+from collections.abc import Sequence
 from typing import Iterable
 
 from rest_framework import mixins
@@ -13,14 +14,14 @@ class BaseViewSet(GenericViewSet):
     """Provide a base viewset."""
 
     base_permission_classes = (IsAuthenticated,)
-    permission_classes = ()
+    permission_classes: Sequence[type[BasePermission]] = ()
     permissions_map: dict[
         str, type[BasePermission] | Iterable[type[BasePermission]]
     ] | None = None
     serializer_class = None
     serializers_map: dict[str, type[BaseSerializer]] | None = None
 
-    def get_viewset_permissions(self) -> list[IsAuthenticated]:
+    def get_viewset_permissions(self) -> list[BasePermission]:
         """Combine `base_permission_classes` and `permission_classes`."""
         if hasattr(self, "permission_classes"):
             permission_classes = self.permission_classes
@@ -38,7 +39,7 @@ class BaseViewSet(GenericViewSet):
     def get_permissions_from_action(
         self,
         action: str,
-    ) -> list[type[BasePermission]]:
+    ) -> list[BasePermission]:
         """Return permission classes from action name."""
         return [permission() for permission in self.permissions_map.get(action)]
 

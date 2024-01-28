@@ -9,7 +9,7 @@ class UserSerializer(BaseSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = (
+        fields: tuple[str, ...] = (
             "id",
             "first_name",
             "last_name",

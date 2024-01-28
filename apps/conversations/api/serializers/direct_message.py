@@ -26,8 +26,10 @@ class DirectMessageListSerializer(BaseModelSerializer):
             "conversation_name",
         )
 
-    def get_avatar(self, message: Message) -> str:
+    def get_avatar(self, message: Message) -> str | None:
         """Get the avatar of the message."""
+        if not message.receiver:
+            return None  # This is to bypass the type checker
         if message.sender == self._user and message.receiver.avatar:
             return message.receiver.avatar.url
         if message.sender.avatar:
@@ -35,6 +37,9 @@ class DirectMessageListSerializer(BaseModelSerializer):
         return None
 
     def get_conversation_name(self, message: Message) -> str:
+        """Get the conversation name of the message."""
+        if not message.receiver:
+            return ""
         if message.sender == self._user:
             return message.receiver.username
         return message.sender.username
