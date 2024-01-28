@@ -183,3 +183,10 @@ score = true
 [tool.pylint.variables]
 # Argument names that match this expression will be ignored.
 ignored-argument-names = "args|kwargs"
+
+[tool.ruff]
+line-length = 80
+exclude = [
+    "*/__init__.py",
+
+]

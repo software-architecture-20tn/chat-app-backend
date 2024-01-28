@@ -3,7 +3,6 @@ from django.db.models import Q
 from rest_framework import serializers
 
 from apps.core.api.serializers import BaseModelSerializer
-from apps.users.api.serializers.user import UserSerializer
 from apps.users.models import FriendRequest, Friendship, User
 
 
@@ -26,10 +25,18 @@ class FriendSerializer(BaseModelSerializer):
 
 class FriendRequestSerializer(BaseModelSerializer):
     """Serializer for the FriendRequest model."""
-    sender_username = serializers.CharField(source='sender.username', read_only=True)
-    sender_first_name = serializers.CharField(source='sender.first_name', read_only=True)
-    sender_last_name = serializers.CharField(source='sender.last_name', read_only=True)
+
+    sender_username = serializers.CharField(
+        source="sender.username", read_only=True
+    )
+    sender_first_name = serializers.CharField(
+        source="sender.first_name", read_only=True
+    )
+    sender_last_name = serializers.CharField(
+        source="sender.last_name", read_only=True
+    )
     sender_avatar = serializers.SerializerMethodField()
+
     class Meta:
         model = FriendRequest
         fields = (
@@ -67,8 +74,7 @@ class FriendRequestSerializer(BaseModelSerializer):
                 "The receiver doesn't exist.",
             )
         if Friendship.objects.filter(
-            Q(user1=value, user2=user)
-            | Q(user2=value, user1=user)
+            Q(user1=value, user2=user) | Q(user2=value, user1=user)
         ).exists():
             raise serializers.ValidationError(
                 "The receiver is already a friend.",

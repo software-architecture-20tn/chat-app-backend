@@ -34,5 +34,5 @@ class Migration(migrations.Migration):
             field=models.CharField(
                 max_length=30, unique=True, verbose_name="Username"
             ),
-        )
+        ),
     ]

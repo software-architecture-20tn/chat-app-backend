@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
-from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
-                                   SpectacularSwaggerView)
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 
 def trigger_error(request):
@@ -44,7 +47,7 @@ urlpatterns = [
     ),
     path("api/users/", include("apps.users.api.urls")),
     path("api/conversations/", include("apps.conversations.api.urls")),
-    path('sentry-debug/', trigger_error),
+    path("sentry-debug/", trigger_error),
 ]
 
 urlpatterns += static(

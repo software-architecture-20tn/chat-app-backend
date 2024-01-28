@@ -20,7 +20,7 @@ class LogoutAPIView(APIView):
 
         """
         token = request.META.get("HTTP_AUTHORIZATION", "").split()[1]
-        short_token_key = token[:CONSTANTS.TOKEN_KEY_LENGTH]
+        short_token_key = token[: CONSTANTS.TOKEN_KEY_LENGTH]
         AuthToken.objects.filter(
             token_key=short_token_key,
             user=request.user,

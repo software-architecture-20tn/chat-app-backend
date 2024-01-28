@@ -10,4 +10,5 @@ class MessagesAppConfig(AppConfig):
 
     def ready(self) -> None:
         from . import signals  # noqa  # pylint: disable=unused-import
+
         return super().ready()

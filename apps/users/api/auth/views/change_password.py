@@ -27,8 +27,6 @@ class PasswordChangeAPIView(GenericAPIView):
             update_session_auth_hash(request, user)
             return Response()
         return Response(
-            {
-                "old_password": "Wrong current password."
-            },
+            {"old_password": "Wrong current password."},
             status=status.HTTP_400_BAD_REQUEST,
         )

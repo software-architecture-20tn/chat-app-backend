@@ -13,16 +13,14 @@ INSTALLED_APPS = (
 )
 
 HEALTH_CHECK_APPS = (
-    "health_check",                             # required
-    "health_check.db",                          # stock Django health checkers
+    "health_check",  # required
+    "health_check.db",  # stock Django health checkers
     "health_check.cache",
     "health_check.storage",
     "health_check.contrib.migrations",
 )
 
-DEV_TOOLS = (
-    "debug_toolbar",
-)
+DEV_TOOLS = ("debug_toolbar",)
 
 DRF_PACKAGES = (
     "rest_framework",
@@ -46,9 +44,5 @@ LOCAL_APPS = (
 )
 
 INSTALLED_APPS += (
-    DRF_PACKAGES
-    + THIRD_PARTY_APPS
-    + LOCAL_APPS
-    + DEV_TOOLS
-    + HEALTH_CHECK_APPS
+    DRF_PACKAGES + THIRD_PARTY_APPS + LOCAL_APPS + DEV_TOOLS + HEALTH_CHECK_APPS
 )

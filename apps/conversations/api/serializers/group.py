@@ -35,10 +35,7 @@ class GroupSerializer(serializers.ModelSerializer):
     def get_members(self, group):
         """Get the members of the group."""
         members = group.members.all()
-        users = [
-            member.member
-            for member in members
-        ]
+        users = [member.member for member in members]
         return MemberSerializer(users, many=True).data
 
 
@@ -104,15 +101,13 @@ class GroupCreationSerializer(serializers.ModelSerializer):
     def get_members(self, group):
         """Get the members of the group."""
         members = group.members.all()
-        users = [
-            member.member
-            for member in members
-        ]
+        users = [member.member for member in members]
         return MemberSerializer(users, many=True).data
 
 
 class GroupAddMemberSerializer(BaseModelSerializer):
     """Serializer for adding members to a group."""
+
     members_ids = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(),
         many=True,
@@ -121,9 +116,7 @@ class GroupAddMemberSerializer(BaseModelSerializer):
 
     class Meta:
         model = Group
-        fields = (
-            "members_ids",
-        )
+        fields = ("members_ids",)
 
     def validate(self, attrs):
         """Validate the members_ids field."""
@@ -160,6 +153,7 @@ class GroupAddMemberSerializer(BaseModelSerializer):
 
 class GroupRemoveMemberSerializer(BaseModelSerializer):
     """Serializer for adding members to a group."""
+
     members_ids = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(),
         many=True,
@@ -168,9 +162,7 @@ class GroupRemoveMemberSerializer(BaseModelSerializer):
 
     class Meta:
         model = Group
-        fields = (
-            "members_ids",
-        )
+        fields = ("members_ids",)
 
     def save(self, **kwargs):
         """Add members to the group."""

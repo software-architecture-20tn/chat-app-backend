@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
                 unique=True,
                 validators=[
                     django.core.validators.RegexValidator(
-                        "^[a-zA-Z0-9]*$", message="Username must be alphanumeric."
+                        "^[a-zA-Z0-9]*$",
+                        message="Username must be alphanumeric.",
                     )
                 ],
                 verbose_name="Username",

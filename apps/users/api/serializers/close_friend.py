@@ -29,6 +29,4 @@ class CloseFriendAddSerializer(BaseSerializer):
     )
 
     class Meta:
-        fields = (
-            "close_friend_id",
-        )
+        fields = ("close_friend_id",)

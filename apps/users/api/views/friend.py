@@ -82,7 +82,11 @@ class FriendRequestViewSet(
 
     def get_queryset(self):
         # list all friend requests sended to the current user but not accepted
-        return super().get_queryset().filter(
-            receiver=self.request.user,
-            is_approved=False,
+        return (
+            super()
+            .get_queryset()
+            .filter(
+                receiver=self.request.user,
+                is_approved=False,
+            )
         )
