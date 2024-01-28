@@ -4,13 +4,13 @@ from django.db.models import Q
 
 from rest_framework import mixins
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiParameter, extend_schema
 
-from apps.core.api.views import BaseViewSet, ReadOnlyViewSet
+from apps.core.api.views import BaseViewSet
 from apps.users.models import User
 
 from ..serializers import UserSearchSerializer, UserSerializer

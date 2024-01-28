@@ -3,7 +3,6 @@ from django.db.models import Q
 from rest_framework import serializers
 
 from apps.core.api.serializers import BaseModelSerializer
-from apps.users.api.serializers.user import UserSerializer
 from apps.users.models import FriendRequest, Friendship, User
 
 

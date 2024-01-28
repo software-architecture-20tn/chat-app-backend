@@ -186,3 +186,7 @@ ignored-argument-names = "args|kwargs"
 
 [tool.ruff]
 line-length = 80
+exclude = [
+    "*/__init__.py",
+
+]
