@@ -57,7 +57,7 @@ django-factory-boy==1.0.0
     # via -r requirements/production.txt
 django-filter==23.5
     # via -r requirements/production.txt
-django-health-check==3.17.0
+django-health-check==3.18.0
     # via -r requirements/production.txt
 django-imagekit==5.0.0
     # via -r requirements/production.txt
@@ -104,6 +104,10 @@ markupsafe==2.1.4
     # via
     #   -r requirements/production.txt
     #   werkzeug
+mypy==1.8.0
+    # via -r requirements/development.in
+mypy-extensions==1.0.0
+    # via mypy
 packaging==23.2
     # via
     #   -r requirements/production.txt
@@ -150,6 +154,8 @@ rpds-py==0.17.1
     #   -r requirements/production.txt
     #   jsonschema
     #   referencing
+ruff==0.1.14
+    # via -r requirements/development.in
 sentry-sdk==1.39.2
     # via -r requirements/production.txt
 six==1.16.0
@@ -161,6 +167,8 @@ sqlparse==0.4.4
     #   -r requirements/production.txt
     #   django
     #   django-debug-toolbar
+typing-extensions==4.9.0
+    # via mypy
 uritemplate==4.1.1
     # via
     #   -r requirements/production.txt
