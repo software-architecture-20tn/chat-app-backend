@@ -5,3 +5,9 @@ ruff
 
 # A type checking linter for Python code.
 mypy
+
+# PEP-484 stubs for Django
+django-stubs
+
+# PEP-484 stubs for django-rest-framework
+djangorestframework-stubs
