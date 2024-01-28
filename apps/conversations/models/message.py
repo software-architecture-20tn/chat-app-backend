@@ -11,10 +11,9 @@ class Message(BaseModel):
 
     sender = models.ForeignKey(
         to="users.User",
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="sent_messages",
         verbose_name=_("Sender"),
-        null=True,
     )
     receiver = models.ForeignKey(
         to="users.User",
