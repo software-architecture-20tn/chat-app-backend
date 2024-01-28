@@ -15,5 +15,5 @@ def create_a_group_member_instance_for_the_creator(
         return
     GroupMember.objects.create(
         group=instance,
-        member=instance.person_created,
+        member=instance.person_created,  # type: ignore
     )

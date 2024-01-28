@@ -1,4 +1,4 @@
-INSTALLED_APPS = (
+INSTALLED_APPS: tuple[str, ...] = (
     "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",

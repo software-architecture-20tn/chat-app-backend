@@ -10,8 +10,8 @@ class UserManager(DjangoUserManager):
     def _create_user(
         self,
         username: str,
-        email: str,
-        password: str | None,
+        email: str | None = None,
+        password: str | None = None,
         **extra_fields,
     ):
         """Create and save a user with email, username, and password."""
@@ -19,14 +19,14 @@ class UserManager(DjangoUserManager):
             raise ValueError("The given email must be set")
         email = self.normalize_email(email)
         user = self.model(email=email, username=username, **extra_fields)
-        user.password = make_password(password)
+        user.password = make_password(password)  # type: ignore
         user.save(using=self._db)
         return user
 
     def create_user(
         self,
-        email: str,
         username: str,
+        email: str | None = None,
         password: str | None = None,
         **extra_fields,
     ):
@@ -39,7 +39,7 @@ class UserManager(DjangoUserManager):
             **extra_fields,
         )
 
-    def create_superuser(
+    def create_superuser(  # type: ignore
         self,
         email: str,
         password: str | None = None,

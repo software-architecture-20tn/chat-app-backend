@@ -24,10 +24,12 @@ class ConversationSerializer(BaseModelSerializer):
             "conversation_name",
         )
 
-    def get_avatar(self, message: Message) -> str:
+    def get_avatar(self, message: Message) -> str | None:
         """Get the avatar of the message."""
         if message.group:
             return None
+        if not message.receiver:
+            return None  # This is to bypass the type checker
         if message.sender == self._user and message.receiver.avatar:
             return message.receiver.avatar.url
         if message.sender.avatar:
@@ -37,6 +39,6 @@ class ConversationSerializer(BaseModelSerializer):
     def get_conversation_name(self, message: Message) -> str:
         if message.group:
             return message.group.name
-        if message.sender == self._user:
+        if message.sender == self._user and message.receiver:
             return message.receiver.username
         return message.sender.username

@@ -9,14 +9,14 @@ from django.utils.translation import gettext_lazy as _
 class BaseAdmin(admin.ModelAdmin):
     """Base Admin for model management."""
 
-    def get_fieldsets(
+    def get_fieldsets(  # type: ignore
         self,
         request: HttpRequest,
         obj: Any | None = ...,
     ) -> list[tuple[str | None, dict]]:
         """Add created_at and updated_at to fieldsets."""
         fieldsets = super().get_fieldsets(request, obj)
-        fieldsets += (
+        fieldsets += (  # type: ignore
             (
                 _("Updated history"),
                 {
@@ -27,7 +27,7 @@ class BaseAdmin(admin.ModelAdmin):
                 },
             ),
         )
-        return fieldsets
+        return fieldsets  # type: ignore
 
     def get_readonly_fields(
         self,
