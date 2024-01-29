@@ -22,6 +22,7 @@ class MemberSerializer(serializers.ModelSerializer):
 
 class GroupSerializer(serializers.ModelSerializer):
     members = serializers.SerializerMethodField()
+    admins = serializers.SerializerMethodField()
 
     class Meta:
         model = Group
@@ -29,6 +30,7 @@ class GroupSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "members",
+            "admins",
         )
 
     @extend_schema_field(MemberSerializer(many=True))
@@ -36,6 +38,13 @@ class GroupSerializer(serializers.ModelSerializer):
         """Get the members of the group."""
         members = group.members.all()
         users = [member.member for member in members]
+        return MemberSerializer(users, many=True).data
+
+    @extend_schema_field(MemberSerializer(many=True))
+    def get_admins(self, group):
+        """Get the admins of the group."""
+        admins = group.admins.all()
+        users = [admin.admin for admin in admins]
         return MemberSerializer(users, many=True).data
 
 
