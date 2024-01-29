@@ -40,7 +40,7 @@ def password_reset_token_created(
 
     # Create message container
     msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Password Reset for {title}".format(title="Teleclone")
+    msg['Subject'] = "Password Reset for {title}".format(title="The Connect")
     msg['From'] = "theconnectteam@outlook.com"
     msg['To'] = reset_password_token.user.email
 
