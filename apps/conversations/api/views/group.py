@@ -9,7 +9,7 @@ from apps.conversations.api.serializers import (
     GroupRemoveMemberSerializer,
     GroupSerializer,
 )
-from apps.conversations.models import Group
+from apps.conversations.models import Group, GroupAdmin
 from apps.core.api.mixins import UpdateModelOnlyPutMixin
 from apps.core.api.views import BaseViewSet
 
@@ -72,7 +72,13 @@ class GroupViewSet(
     def add_members(self, request, *args, **kwargs):
         """Add members to a group."""
         group = self.get_object()
-        serializer = self.get_serializer(data=request.data)
+        user = request.user
+        if not GroupAdmin.objects.filter(group=group, admin=user).exists():
+            return Response(
+                {"message": "You are not the admin of this group"},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        serializer = self.get_serializer(instance=group, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(instance=group)
         return Response(
@@ -84,7 +90,7 @@ class GroupViewSet(
     def remove_members(self, request, *args, **kwargs):
         """Remove members from a group."""
         group = self.get_object()
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(instance=group, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(instance=group)
         return Response(
