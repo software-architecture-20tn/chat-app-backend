@@ -1,5 +1,8 @@
-# https://studygyaan.com/django/django-rest-framework-tutorial-change-password-and-reset-password
-from django.core.mail import EmailMultiAlternatives
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+from django.conf import settings
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 
@@ -25,35 +28,43 @@ def password_reset_token_created(
     :return:
 
     """
-    # Send an e-mail to the user
+    # Set your SMTP server details
+    smtp_server = 'smtp-mail.outlook.com'
+    smtp_port = 587
+    smtp_username = "theconnectteam@outlook.com"
+    # Temporary solutions
+    # I will take a look at this later
+    # Now I am hurry
+    # TODO: Fix this
+    smtp_password = "TeamTheConnect2024"
+
+    # Create message container
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Password Reset for {title}".format(title="Teleclone")
+    msg['From'] = "theconnectteam@outlook.com"
+    msg['To'] = reset_password_token.user.email
+
+    # Set the email content
     context = {
         "current_user": reset_password_token.user,
         "username": reset_password_token.user.username,
         "email": reset_password_token.user.email,
         "reset_password_url": "{}?token={}".format(
-            (
-                "https://teleclone.nguyenvanloc.name.vn/"
-                "forgot-password-confirm"
-            ),
+            "https://teleclone.nguyenvanloc.name.vn/forgot-password-confirm",
             reset_password_token.key,
         ),
     }
 
-    # render email text
-    email_html_message = render_to_string(
-        "email/password_reset_email.html",
-        context,
-    )
-    email_plaintext_message = render_to_string(
-        "email/password_reset_email.txt",
-        context,
-    )
+    email_html_message = render_to_string("email/password_reset_email.html", context)
+    email_plaintext_message = render_to_string("email/password_reset_email.txt", context)
 
-    msg = EmailMultiAlternatives(
-        "Password Reset for {title}".format(title="Teleclone"),
-        email_plaintext_message,
-        "noreply@chat-app.nguyenvanloc.name.vn",
-        [reset_password_token.user.email],
-    )
-    msg.attach_alternative(email_html_message, "text/html")
-    msg.send()
+    # Attach HTML and plain text content
+    msg.attach(MIMEText(email_plaintext_message, 'plain'))
+    msg.attach(MIMEText(email_html_message, 'html'))
+    breakpoint()
+
+    # Connect to the SMTP server
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+        server.sendmail(msg['From'], msg['To'], msg.as_string())
