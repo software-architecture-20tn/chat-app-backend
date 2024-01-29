@@ -61,7 +61,7 @@ def password_reset_token_created(
     # Attach HTML and plain text content
     msg.attach(MIMEText(email_plaintext_message, 'plain'))
     msg.attach(MIMEText(email_html_message, 'html'))
-    breakpoint()
+    # breakpoint()
 
     # Connect to the SMTP server
     with smtplib.SMTP(smtp_server, smtp_port) as server:
