@@ -112,7 +112,7 @@ rpds-py==0.17.1
     # via
     #   jsonschema
     #   referencing
-sentry-sdk==1.39.2
+sentry-sdk==1.40.0
     # via -r requirements/production.in
 six==1.16.0
     # via python-dateutil
