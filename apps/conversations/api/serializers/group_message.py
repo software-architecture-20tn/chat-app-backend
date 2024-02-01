@@ -53,7 +53,6 @@ class GroupMessageSerializer(BaseModelSerializer):
             return None
         return message.sender.avatar.url
 
-
     def validate(self, attrs):
         """Validate the serializer."""
         if attrs.get("receiver"):

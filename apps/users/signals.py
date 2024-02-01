@@ -28,23 +28,16 @@ def password_reset_token_created(
     :return:
 
     """
-    # Set your SMTP server details
-    smtp_server = 'smtp-mail.outlook.com'
+    smtp_server = "smtp-mail.outlook.com"
     smtp_port = 587
     smtp_username = settings.EMAIL_HOST_USER
-    # Temporary solutions
-    # I will take a look at this later
-    # Now I am hurry
-    # TODO: Fix this
     smtp_password = settings.EMAIL_HOST_PASSWORD
 
-    # Create message container
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Password Reset for {title}".format(title="The Connect")
-    msg['From'] = "theconnectteam@outlook.com"
-    msg['To'] = reset_password_token.user.email
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = "Password Reset for {title}".format(title="The Connect")
+    msg["From"] = "theconnectteam@outlook.com"
+    msg["To"] = reset_password_token.user.email
 
-    # Set the email content
     context = {
         "current_user": reset_password_token.user,
         "username": reset_password_token.user.username,
@@ -55,16 +48,17 @@ def password_reset_token_created(
         ),
     }
 
-    email_html_message = render_to_string("email/password_reset_email.html", context)
-    email_plaintext_message = render_to_string("email/password_reset_email.txt", context)
+    email_html_message = render_to_string(
+        "email/password_reset_email.html", context
+    )
+    email_plaintext_message = render_to_string(
+        "email/password_reset_email.txt", context
+    )
 
-    # Attach HTML and plain text content
-    msg.attach(MIMEText(email_plaintext_message, 'plain'))
-    msg.attach(MIMEText(email_html_message, 'html'))
-    # breakpoint()
+    msg.attach(MIMEText(email_plaintext_message, "plain"))
+    msg.attach(MIMEText(email_html_message, "html"))
 
-    # Connect to the SMTP server
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(smtp_username, smtp_password)
-        server.sendmail(msg['From'], msg['To'], msg.as_string())
+        server.sendmail(msg["From"], msg["To"], msg.as_string())

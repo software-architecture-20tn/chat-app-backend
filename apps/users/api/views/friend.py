@@ -88,5 +88,6 @@ class FriendRequestViewSet(
             .filter(
                 receiver=self.request.user,
                 is_approved=False,
-            ).order_by("-date_time_sent")
+            )
+            .order_by("-date_time_sent")
         )
