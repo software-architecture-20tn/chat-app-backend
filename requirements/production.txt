@@ -47,7 +47,7 @@ django-factory-boy==1.0.0
     # via -r requirements/production.in
 django-filter==23.5
     # via -r requirements/production.in
-django-health-check==3.18.0
+django-health-check==3.18.1
     # via -r requirements/production.in
 django-imagekit==5.0.0
     # via -r requirements/production.in
