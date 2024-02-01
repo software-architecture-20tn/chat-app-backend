@@ -31,12 +31,12 @@ def password_reset_token_created(
     # Set your SMTP server details
     smtp_server = 'smtp-mail.outlook.com'
     smtp_port = 587
-    smtp_username = "theconnectteam@outlook.com"
+    smtp_username = settings.EMAIL_HOST_USER
     # Temporary solutions
     # I will take a look at this later
     # Now I am hurry
     # TODO: Fix this
-    smtp_password = "TeamTheConnect2024"
+    smtp_password = settings.EMAIL_HOST_PASSWORD
 
     # Create message container
     msg = MIMEMultipart('alternative')
