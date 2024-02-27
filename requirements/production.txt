@@ -20,7 +20,7 @@ cryptography==42.0.4
     # via django-rest-knox
 django==5.0.2
     # via
-    #   -r production.in
+    #   -r requirements/production.in
     #   django-appconf
     #   django-cors-headers
     #   django-debug-toolbar
@@ -36,44 +36,44 @@ django==5.0.2
 django-appconf==1.0.6
     # via django-imagekit
 django-cors-headers==4.3.1
-    # via -r production.in
+    # via -r requirements/production.in
 django-debug-toolbar==4.3.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-defender==0.9.8
-    # via -r production.in
+    # via -r requirements/production.in
 django-extensions==3.2.3
-    # via -r production.in
+    # via -r requirements/production.in
 django-factory-boy==1.0.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-filter==23.5
-    # via -r production.in
+    # via -r requirements/production.in
 django-health-check==3.18.1
-    # via -r production.in
+    # via -r requirements/production.in
 django-imagekit==5.0.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-jazzmin==2.6.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-migrations-formatter==1.0.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-probes==1.7.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-rest-knox==4.2.0
-    # via -r production.in
+    # via -r requirements/production.in
 django-rest-passwordreset==1.4.0
-    # via -r production.in
+    # via -r requirements/production.in
 djangorestframework==3.14.0
     # via
-    #   -r production.in
+    #   -r requirements/production.in
     #   django-rest-knox
     #   drf-spectacular
 drf-spectacular==0.27.1
-    # via -r production.in
+    # via -r requirements/production.in
 factory-boy==3.3.0
     # via django-factory-boy
 faker==22.5.1
     # via factory-boy
 gunicorn==21.2.0
-    # via -r production.in
+    # via -r requirements/production.in
 inflection==0.5.1
     # via drf-spectacular
 jsonschema==4.21.1
@@ -88,16 +88,16 @@ pilkit==3.0
     # via django-imagekit
 pillow==10.2.0
     # via
-    #   -r production.in
+    #   -r requirements/production.in
     #   pilkit
 psycopg2==2.9.9
-    # via -r production.in
+    # via -r requirements/production.in
 pycparser==2.21
     # via cffi
 python-dateutil==2.8.2
     # via faker
 python-dotenv==1.0.1
-    # via -r production.in
+    # via -r requirements/production.in
 pytz==2023.3.post1
     # via djangorestframework
 pyyaml==6.0.1
@@ -112,8 +112,8 @@ rpds-py==0.17.1
     # via
     #   jsonschema
     #   referencing
-sentry-sdk==1.40.5
-    # via -r production.in
+sentry-sdk==1.40.6
+    # via -r requirements/production.in
 six==1.16.0
     # via python-dateutil
 sqlparse==0.4.4
@@ -125,4 +125,4 @@ uritemplate==4.1.1
 urllib3==2.1.0
     # via sentry-sdk
 werkzeug==3.0.1
-    # via -r production.in
+    # via -r requirements/production.in
