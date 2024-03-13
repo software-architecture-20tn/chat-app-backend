@@ -18,7 +18,7 @@ cffi==1.16.0
     # via cryptography
 cryptography==42.0.4
     # via django-rest-knox
-django==5.0.2
+django==5.0.3
     # via
     #   -r requirements/production.in
     #   django-appconf
@@ -45,7 +45,7 @@ django-extensions==3.2.3
     # via -r requirements/production.in
 django-factory-boy==1.0.0
     # via -r requirements/production.in
-django-filter==23.5
+django-filter==24.1
     # via -r requirements/production.in
 django-health-check==3.18.1
     # via -r requirements/production.in
@@ -112,7 +112,7 @@ rpds-py==0.17.1
     # via
     #   jsonschema
     #   referencing
-sentry-sdk==1.40.6
+sentry-sdk==1.42.0
     # via -r requirements/production.in
 six==1.16.0
     # via python-dateutil
