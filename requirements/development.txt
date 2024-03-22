@@ -167,7 +167,7 @@ rpds-py==0.17.1
     #   -r requirements/production.txt
     #   jsonschema
     #   referencing
-ruff==0.3.3
+ruff==0.3.4
     # via -r requirements/development.in
 sentry-sdk==1.43.0
     # via -r requirements/production.txt
