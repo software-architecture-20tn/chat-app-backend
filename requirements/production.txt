@@ -51,7 +51,7 @@ django-health-check==3.18.1
     # via -r requirements/production.in
 django-imagekit==5.0.0
     # via -r requirements/production.in
-django-jazzmin==2.6.0
+django-jazzmin==2.6.1
     # via -r requirements/production.in
 django-migrations-formatter==1.0.0
     # via -r requirements/production.in
@@ -61,7 +61,7 @@ django-rest-knox==4.2.0
     # via -r requirements/production.in
 django-rest-passwordreset==1.4.0
     # via -r requirements/production.in
-djangorestframework==3.15.0
+djangorestframework==3.15.1
     # via
     #   -r requirements/production.in
     #   django-rest-knox
