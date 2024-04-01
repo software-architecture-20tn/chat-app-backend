@@ -60,13 +60,13 @@ django-extensions==3.2.3
     # via -r requirements/production.txt
 django-factory-boy==1.0.0
     # via -r requirements/production.txt
-django-filter==24.1
+django-filter==24.2
     # via -r requirements/production.txt
 django-health-check==3.18.1
     # via -r requirements/production.txt
 django-imagekit==5.0.0
     # via -r requirements/production.txt
-django-jazzmin==2.6.0
+django-jazzmin==2.6.1
     # via -r requirements/production.txt
 django-migrations-formatter==1.0.0
     # via -r requirements/production.txt
@@ -82,7 +82,7 @@ django-stubs==4.2.7
     #   djangorestframework-stubs
 django-stubs-ext==4.2.7
     # via django-stubs
-djangorestframework==3.15.0
+djangorestframework==3.15.1
     # via
     #   -r requirements/production.txt
     #   django-rest-knox
@@ -131,7 +131,7 @@ pilkit==3.0
     # via
     #   -r requirements/production.txt
     #   django-imagekit
-pillow==10.2.0
+pillow==10.3.0
     # via
     #   -r requirements/production.txt
     #   pilkit
@@ -167,9 +167,9 @@ rpds-py==0.17.1
     #   -r requirements/production.txt
     #   jsonschema
     #   referencing
-ruff==0.3.3
+ruff==0.3.4
     # via -r requirements/development.in
-sentry-sdk==1.43.0
+sentry-sdk==1.44.0
     # via -r requirements/production.txt
 six==1.16.0
     # via
