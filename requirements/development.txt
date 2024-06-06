@@ -9,6 +9,7 @@ asgiref==3.7.2
     #   -r requirements/production.txt
     #   django
     #   django-cors-headers
+    #   django-stubs
 attrs==23.2.0
     # via
     #   -r requirements/production.txt
@@ -29,7 +30,7 @@ cryptography==42.0.4
     # via
     #   -r requirements/production.txt
     #   django-rest-knox
-django==5.0.3
+django==5.0.6
     # via
     #   -r requirements/production.txt
     #   django-appconf
@@ -52,7 +53,7 @@ django-appconf==1.0.6
     #   django-imagekit
 django-cors-headers==4.3.1
     # via -r requirements/production.txt
-django-debug-toolbar==4.3.0
+django-debug-toolbar==4.4.2
     # via -r requirements/production.txt
 django-defender==0.9.8
     # via -r requirements/production.txt
@@ -60,13 +61,13 @@ django-extensions==3.2.3
     # via -r requirements/production.txt
 django-factory-boy==1.0.0
     # via -r requirements/production.txt
-django-filter==24.1
+django-filter==24.2
     # via -r requirements/production.txt
-django-health-check==3.18.1
+django-health-check==3.18.2
     # via -r requirements/production.txt
 django-imagekit==5.0.0
     # via -r requirements/production.txt
-django-jazzmin==2.6.0
+django-jazzmin==3.0.0
     # via -r requirements/production.txt
 django-migrations-formatter==1.0.0
     # via -r requirements/production.txt
@@ -74,22 +75,22 @@ django-probes==1.7.0
     # via -r requirements/production.txt
 django-rest-knox==4.2.0
     # via -r requirements/production.txt
-django-rest-passwordreset==1.4.0
+django-rest-passwordreset==1.4.1
     # via -r requirements/production.txt
-django-stubs==4.2.7
+django-stubs==5.0.2
     # via
     #   -r requirements/development.in
     #   djangorestframework-stubs
-django-stubs-ext==4.2.7
+django-stubs-ext==5.0.2
     # via django-stubs
-djangorestframework==3.15.0
+djangorestframework==3.15.1
     # via
     #   -r requirements/production.txt
     #   django-rest-knox
     #   drf-spectacular
-djangorestframework-stubs==3.14.5
+djangorestframework-stubs==3.15.0
     # via -r requirements/development.in
-drf-spectacular==0.27.1
+drf-spectacular==0.27.2
     # via -r requirements/production.txt
 factory-boy==3.3.0
     # via
@@ -99,7 +100,7 @@ faker==22.5.1
     # via
     #   -r requirements/production.txt
     #   factory-boy
-gunicorn==21.2.0
+gunicorn==22.0.0
     # via -r requirements/production.txt
 idna==3.6
     # via requests
@@ -119,7 +120,7 @@ markupsafe==2.1.4
     # via
     #   -r requirements/production.txt
     #   werkzeug
-mypy==1.9.0
+mypy==1.10.0
     # via -r requirements/development.in
 mypy-extensions==1.0.0
     # via mypy
@@ -131,7 +132,7 @@ pilkit==3.0
     # via
     #   -r requirements/production.txt
     #   django-imagekit
-pillow==10.2.0
+pillow==10.3.0
     # via
     #   -r requirements/production.txt
     #   pilkit
@@ -167,9 +168,9 @@ rpds-py==0.17.1
     #   -r requirements/production.txt
     #   jsonschema
     #   referencing
-ruff==0.3.3
+ruff==0.4.8
     # via -r requirements/development.in
-sentry-sdk==1.43.0
+sentry-sdk==2.5.0
     # via -r requirements/production.txt
 six==1.16.0
     # via
@@ -180,15 +181,13 @@ sqlparse==0.4.4
     #   -r requirements/production.txt
     #   django
     #   django-debug-toolbar
-types-pytz==2023.3.1.1
-    # via django-stubs
 types-pyyaml==6.0.12.12
     # via
     #   django-stubs
     #   djangorestframework-stubs
 types-requests==2.31.0.20240125
     # via djangorestframework-stubs
-typing-extensions==4.9.0
+typing-extensions==4.12.1
     # via
     #   django-stubs
     #   django-stubs-ext
@@ -204,5 +203,5 @@ urllib3==2.1.0
     #   requests
     #   sentry-sdk
     #   types-requests
-werkzeug==3.0.1
+werkzeug==3.0.3
     # via -r requirements/production.txt
