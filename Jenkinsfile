@@ -1,31 +1,41 @@
 pipeline {
   agent any
+  environment {
+    PATH = "/usr/bin:$PATH"
+  }
   stages {
-    stage("Setup environment") {
+    stage("Setup Environment") {
       steps {
-        sh '''
-        chmod +x jenkins-scripts/envsetup.sh
-        ./jenkins-scripts/envsetup.sh
-        '''
+        script {
+          sh '''
+          chmod +x jenkins-scripts/envsetup.sh
+          ./jenkins-scripts/envsetup.sh
+          '''
+        }
       }
     }
     stage("Setup Gunicorn") {
       steps {
-        sh '''
-        chmod +x jenkins-scripts/gunicorn.sh
-        ./jenkins-scripts/gunicorn.sh
-        '''
+        script {
+          sh '''
+          chmod +x jenkins-scripts/gunicorn.sh
+          ./jenkins-scripts/gunicorn.sh
+          '''
+        }
       }
     }
     stage("Setup NGINX") {
       steps {
-        sh '''
-        chmod +x jenkins-scripts/nginx.sh
-        ./jenkins-scripts/nginx.sh
-        '''
+        script {
+          sh '''
+          chmod +x jenkins-scripts/nginx.sh
+          ./jenkins-scripts/nginx.sh
+          '''
+        }
       }
     }
   }
+}
   // post {
   //     success {
   //       slackSend(
