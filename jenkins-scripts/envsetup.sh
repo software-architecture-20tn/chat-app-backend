@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /var/lib/jenkins/workspace/chat-app-backend
-
+uv venv --python 3.11 --prompt chat --seed
 source .venv/bin/activate
 
 
